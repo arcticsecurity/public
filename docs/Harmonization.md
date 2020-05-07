@@ -214,4 +214,4 @@ In summary, the underlying idea of this ontology is to provide a good foundation
 
 # History of this Document
 
-A public version of this document has been iterated over, since 2012. Originally, it was a collaboration between numerous CSIRT actors (CERT-EU, CERT-AT, CERT-FI, CERT.PT) and Codenomicon. The current version of this document represents the practical collaboration between national CERT teams such as [CERT-BE](http://www.cert.be/), [NCSC](http://www.ncsc.gov.uk), [NCSC-FI](https://www.ncsc.fi) and [Arctic Security](http://www.arcticsecurity.com), a commercial company.
+A public version of this document has been iterated over, since 2012. Originally, it was a collaboration between numerous CSIRT actors (CERT-EU, CERT-AT, CERT-FI, CERT.PT) and Codenomicon. The current version of this document represents the practical collaboration between national CSIRT teams such as [CERT-BE](http://www.cert.be/), [NCSC](http://www.ncsc.gov.uk), [NCSC-FI](https://www.ncsc.fi) and [Arctic Security](http://www.arcticsecurity.com), a commercial company.
