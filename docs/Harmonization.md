@@ -204,7 +204,7 @@ For a given context there may be other provider specific interpretations which w
 
 ## Harmonization Best Practices
 
-There are many things you have to take into account when harmonizing heterogeneous datasets. The established attributes in this ontology should help you on your way when dealing with topic- or provider-specific attributes. In general, the attribute names should be **lower case** and use white space, " ", instead of underscores, "\_"; for example, "DNS\_Version" should be harmonized into "dns version".
+There are many things you have to take into account when harmonizing heterogeneous datasets. The established attributes in this ontology should help you on your way when dealing with topic- or provider-specific attributes. In general, the attribute names must be **lower case** and use white space, " ", instead of underscores, "\_"; for example, "DNS\_Version" should be harmonized into "dns version".
 
 We recognize that for traditional database schemas this approach may be challenging, but converting spaces into underscores in the attribute names should not be an impossible undertaking. The idea of the ontology, after all, is to be a human readable abstraction.
 
