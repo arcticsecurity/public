@@ -128,6 +128,7 @@ The idea behind the additional attributes is to present generic observation meta
 |malware family|A malware family name, in lower case.|
 |missing data|If the harmonization is missing a known piece of data (such as an **ip** for example), the reference to this fact may be inserted here.|
 |protocol|The protocol attribute describes the application protocol on top of the transport which relates to the observed abuse or vulnerable service; that is, "protocol=ssh" for SSH brute-force attacks is more descriptive than "protocol=tcp". In this case the transport protocol should be referenced by that key, "transport protocol=tcp".|
+|service|In addition to describing a port and protocol for a given observation, one may need to describe the service which is listening on that port which is described by the observation, such as a publicly exposed vulnerability.|
 |source|Aggregated feeds use indicators not obtained directly from the feeder. Some aggregated feeds report a source of this external information. This key can be used to denote those external feeder entities, such as in the case of blacklist aggregation. Note the source is external to a feeder or their feed offering.|
 |status|Observed status of the malicious resource phishing URL, dropzone, command and control server; for example, online, offline.|
 |target|Some sources such as phishing feeds designate the target of a phishing campaign.|
@@ -142,12 +143,12 @@ The idea behind the additional attributes is to present generic observation meta
 Host-based artifacts play a role in incident handling, and having a means to relay these in a uniform manner through automation is essential. At present, we identify two main categories for artifacts:
 
  * hashes of malicious content
- * rule-based descriptions of malicious content.
+ * functional or formal descriptions of malicious content.
 
 |attribute|description|
 --- | --- |
-|artifact content|A formal or rule-based description of malicious content.|
-|artifact content type|Formal description type for the artifact content in question, e.g. a Yara rule or a Suricata rule.|
+|artifact content|A funtional or rule-based description of malicious content.|
+|artifact content type|Functional typing for the artifact content in question, e.g. a detection rule or a functional artifact such as a registry key or mutex.|
 |artifact hash|A string depicting a checksum or hash of a file, be it a malware or other sample.|
 |artifact hash type|The hashing algorithm used for artifact hash type above, such as MD5 or SHA-N etc.|
 
