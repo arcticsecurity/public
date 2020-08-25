@@ -51,7 +51,7 @@ The observation type defines the way the attributes of an observation need to be
 |email address|An email address, the interpretation of which is based on the abuse type.|
 |ip|IPv4 or IPv6 address.|
 |port|The port through which the abuse activity is taking place. For example a command and control server report will most likely contain a port which is directly related to the reported IP or host.|
-|registry|The IP registry, RIR, whcih allocated a given IP address.|
+|registry|The IP registry, RIR, which allocated a given IP address.|
 |reverse dns|A Reverse DNS name acquired through a reverse DNS lookup on an IP address. Note: Record types other than PTR records may also appear in the reverse DNS tree. http://en.wikipedia.org/wiki/Reverse_DNS_lookup|
 |url|A URL denotes an observation, which refers to a malicious resource or vulnerable endpoint, whose interpretation is defined by the observation type. For example a URL with the observation type phishing refers to a phishing resource.|
 
