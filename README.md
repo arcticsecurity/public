@@ -1,4 +1,4 @@
-# Arctic Security Public
+# Arctic Security Public Repository
 
 * This repository contains code and documents, which fall into the public domain provided
   by Arctic Security, an information security company from Finland.
