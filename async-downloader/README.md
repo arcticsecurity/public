@@ -1,6 +1,6 @@
 > This document is classified by the Traffic Light Protocol (TLP) as **TLP:WHITE**.
 
-# Arctic Hub Sharing Asynchronous API Downloader
+# Arctic Hub: Sharing Asynchronous API Downloader
 
 This `README.md` describes the script `async.py`, which is an example on how to use the Arctic Hub async share API.
 
