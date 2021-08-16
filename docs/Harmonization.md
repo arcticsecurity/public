@@ -4,16 +4,16 @@
 
 The purpose of this document is to describe a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different audience in mind, namely:
 
- * *suspected compromise* for incident response
- * *vulnerability* for vulnerability management
- * *exposure* for threat surface management
- * *plausible harm* for data analysis and risk assessment.
+ * **suspected compromise** for incident response
+ * **vulnerability** for vulnerability management
+ * **exposure** for threat surface management
+ * **plausible harm** for data analysis and risk assessment.
 
 Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approached data harmonization from the victim notification perspective.
 
 ## What is data harmonization?
 
-The purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation which belongs to one of the *categories* outlined above.
+The purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation which belongs to one of the **categories** outlined above.
 
 With data harmonization covered briefly, we move on to defining an ontology. An ontology in our case is a higher level abstraction of a language, where each lexeme addresses a discernible characteristic of an observation. Our grammar is thus expressed as sets of key-value pairs, which are straightforward to serialize into flat dictionaries. We reference **observations** as collections of ontology driven key-value pairs. Please note that we use the term **key** to denote an observation schema and the term **attribute** to denote an ontology lexeme.
 
@@ -27,10 +27,10 @@ It is important to be able to classify, prioritize and report relevant actionabl
 
 |attribute|description|
 --- | --- |
-|category|A functional category describes the intended audience for a given observation. It in itself is a collection of functional types with a specific use for the given audience, e.g. *suspected compromise* must contain observations which merit incident response.|
+|category|A functional category describes the intended audience for a given observation. It in itself is a collection of functional types with a specific use for the given audience, e.g. **suspected compromise** must contain observations which merit incident response.|
 |type|The **type** attribute is one of the most crucial pieces of information for any given threat observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
 
-To keep communication clear and tailored to the needs of the intended audience, we retain a 1:1 mapping between a category and a type, i.e. only the type *test* is a member of multiple categories. All the other types belong only to a single category.
+To keep communication clear and tailored to the needs of the intended audience, we retain a 1:1 mapping between a category and a type, i.e. only the type **test** is a member of multiple categories. All the other types belong only to a single category.
 
 ## Categories and Types
 
@@ -107,7 +107,7 @@ Plausible harm denotes a category of observations which attribute a perceived ha
 
 # Core Attributes
 
-For a threat observation to be actionable and able to reach the right end recipient, various attributes must to be present and defined in the correct manner.
+For an observation to be actionable and able to reach the right end recipient, various attributes must to be present and defined in the correct manner.
 
 ## Feed Attributes
 
@@ -143,10 +143,10 @@ The observation type defines the way the attributes of an observation need to be
 |bgp prefix allocated|The date when a Regional Internet Registry (RIR) such as RIPE NCC or ARIN allocated a given BGP prefix.|
 |bgp prefix|A CIDR associated to an autonomous system.|
 |domain name|DNS domain name. http://en.wikipedia.org/wiki/Domain_name|
-|email address|An email address, the interpretation of which is based on the abuse type.|
+|email address|An email address, the interpretation of which is based on the observation type.|
 |ip|IPv4 or IPv6 address.|
-|port|The port through which the abuse activity is taking place. For example a command and control server report will most likely contain a port which is directly related to the reported IP or host.|
-|registry|The IP registry, RIR, whcih allocated a given IP address.|
+|port|The port through which the observed activity is taking place. For example a command and control server report will most likely contain a port which is directly related to the reported IP or host operating as the c&c.|
+|registry|The IP registry, RIR, which allocated a given IP address or netblock.|
 |reverse dns|A Reverse DNS name acquired through a reverse DNS lookup on an IP address. Note: Record types other than PTR records may also appear in the reverse DNS tree. http://en.wikipedia.org/wiki/Reverse_DNS_lookup|
 |url|A URL denotes an observation, which refers to a malicious resource or vulnerable endpoint, whose interpretation is defined by the observation type. For example a URL with the observation type phishing refers to a phishing resource.|
 
@@ -187,7 +187,7 @@ As stated above, the meaning of each observation needs to be interpreted with re
 
 ### Reported Identity
 
-Each threat handling organization should define a policy which outlines those attributes used as primary elements of an observation. Often the source feeds perform their own attribution but you may choose to correlate their attributive elements against your own or those of a third party. In practice, this means that your harmonization process should prefix the keys with the **reported** keyword, to denote that you have decided to perform the attribution on your own. The list below is not comprehensive; rather it is a list of common things you may want to observe yourself. Moreover, if you choose to perform your own attribution, the **observation time** will become your authoritative point of reference in relation to the new attributes.
+Each early warning service organization should define a policy which outlines those attributes used as primary elements of an observation. Often the source feeds perform their own attribution but you may choose to correlate their attributive elements against your own or those of a third party. In practice, this means that your harmonization process should prefix the keys with the **reported** keyword, to denote that you have decided to perform the attribution on your own. The list below is not comprehensive; rather it is a list of common things you may want to observe yourself. Moreover, if you choose to perform your own attribution, the **observation time** will become your authoritative point of reference in relation to the new attributes.
 
 |attribute|description|
 --- | --- |
@@ -202,7 +202,7 @@ We acknowledge IP geolocation is not an exact science, and our analysis has show
 
 |attribute|description|
 --- | --- |
-|cc|Each threat handling pipeline should define a logic how to assign a value for the cc key. You may decide to trust the opinion of a single source or apply logical operations on multiple sources. The country code is expressed as an ISO 3166 two-letter country code.|
+|cc|Each early warning service should define a logic how to assign a value for the cc key. You may decide to trust the opinion of a single source or apply logical operations on multiple sources. The country code is expressed as an ISO 3166 two-letter country code.|
 |city|Some geolocation services refer to city-level geolocation.|
 |country|The country name derived from the ISO 3166 country code (assigned to cc above).|
 |latitude|Latitude coordinate derived from a geolocation service such as the MaxMind GeoIP database.|
@@ -210,29 +210,29 @@ We acknowledge IP geolocation is not an exact science, and our analysis has show
 
 ## Additional Attributes
 
-The idea behind the additional attributes is to present generic observation metadata which complements the identity or temporal information about the victim, vulnerable service or a piece of compromised infrastructure. In addition, the purpose of this information is to give more context to the observation type denoted by the **type** attribute.
+The idea behind the additional attributes is to present generic observation metadata which complements the identity or temporal information about the observed activity, be it suspected compromise, vulnerability, exposure or plausible harm. In addition, the purpose of this information is to give more context to the observation type denoted by the **type** attribute.
 
 |attribute|description|
 --- | --- |
 |abuse contact|An abuse contact email address for an IP network.|
 |additional information|Sometimes it may be necessary to relay a an additional piece of information to the report recipient related to the specific context at hand. So in a sense it is a placeholder for useful context dependent information, which would be otherwise difficult to convey without changing the schema.|
 |comment|Free text commentary about the abuse event augmented by an analyst.|
-|description url|A description URL is a link to a further description of threat in question.|
-|description|A free-form textual description of an abuse or vulnerable service event.|
-|http request|Some feeders report HTTP requests instead of URLs. The feeders may call them URLs but for the sake of interoperability with automation, such events should be placed under the "http request" key as there is no guarantee that the protocol specification is HTTP.|
+|description url|A description URL is a link to a further description of the observation in question.|
+|description|A concise free-form textual description of the observation, which should make it easier for the recipient to interpret it.|
+|http request|Some feeders report HTTP requests instead of URLs. The feeders may call them URLs but for the sake of interoperability with automation, such events should be placed under the "http request" key as there is no guarantee that the protocol scheme is HTTP.|
 |malware family|A malware family name, in lower case.|
 |missing data|If the harmonization is missing a known piece of data (such as an **ip** for example), the reference to this fact may be inserted here.|
-|protocol|The protocol attribute describes the application protocol on top of the transport which relates to the observed abuse or vulnerable service; that is, "protocol=ssh" for SSH brute-force attacks is more descriptive than "protocol=tcp". In this case the transport protocol should be referenced by that key, "transport protocol=tcp".|
+|protocol|The protocol attribute describes the application protocol on top of the transport which relates to the observatio in question; that is, "protocol=ssh" for SSH brute-force attacks is more descriptive than "protocol=tcp". In this case the transport protocol should be referenced by that key, "transport protocol=tcp".|
 |service|In addition to describing a port and protocol for a given observation, one may need to describe the service which is listening on that port which is described by the observation, such as a publicly exposed vulnerability.|
-|severity|FixMe|
-|source|Aggregated feeds use indicators not obtained directly from the feeder. Some aggregated feeds report a source of this external information. This key can be used to denote those external feeder entities, such as in the case of reputation list aggregation. Note the source is external to a feeder or their feed offering.|
-|status|Observed status of the malicious resource phishing URL, dropzone, command and control server; for example, online, offline.|
+|severity|Often observations need to be prioritized and technical severity can be used to denote the urgency of the observation to the recipient, e.g. low, medium, high.|
+|source|Aggregated feeds use observations not obtained directly by the feeder. Some aggregated feeds report a source of this external information. This key can be used to denote those external feeder entities, such as in the case of reputation list aggregation. N.B. the source is external to the feeder or their feed offering.|
+|status|Observed status of a network resource such as a phishing URL, dropzone, command and control server; for example, online, offline.|
 |target|Some sources such as phishing feeds designate the target of a phishing campaign.|
-|tracking id|Some sources and applications use an identifier to denote a context for an abuse event. We previously denoted these with provider specific ID keys, such as "rtir id", "misp id" and so on. Since traceability is the common communicative function, we have bundled all these IDs under the tracking id key. Please note that the purpose of this key is to link the event into an aggregate context. It is not a unique identifier for a single event. For this purpose you should use the "uuid" key instead.|
-|transport protocol|Some feeds report a protocol denoting the observed transport (for example, tcp, udp). This should be recorded appropriately should the protocol attribute denote the protocol of a vulnerable service.|
+|tracking id|Some sources and applications use an identifier to denote a context for an observation. This context may attribute a threat actor, case number or any other contextual information which is bundled with the observation.|
+|transport protocol|Some feeds report a protocol denoting the observed transport (for example, tcp, udp). This should be recorded appropriately should the protocol attribute denote the protocol of a vulnerable service for example.|
 |uri|For various technical reasons feeders often present URI references in their feeds instead of URLs. A URI reference is sometimes missing the scheme element, even if the authority and path elements are present as defined by the RFC3986. For brevity, we use the uri attribute to denote URIs and URI references.|
 |uuid|The purpose of the uuid is to denote a unique identifier, which uniquely identifies a single observation. For example, UUIDs generated with Python should generated using the uuid.uuid4() function, based on [RFC4122](http://tools.ietf.org/html/rfc4122). Note that "uuid" serves a different function than the tracking id.|
-|vulnerability|Sometimes it is necessary to provide a short description of a vulnerable service reported by a source. This helps in correlating the vulnerabilities across sources.|
+|vulnerability|Sometimes it is necessary to provide a short description of a vulnerability reported by a source. This helps in correlating the vulnerabilities across sources. Vulnerability may be a CVE, name such as Heartbleed, or a weakness related to the attack surface such as firewall configuration.|
 
 ### Artifact Attributes
 
