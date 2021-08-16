@@ -1,14 +1,104 @@
-# Data Harmonization Ontology (TLP White)
+> This document is classified by the Traffic Light Protocol (TLP) as **TLP:WHITE**.
 
-What is data harmonization? What is an ontology? The purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of compromised machines or publicly exposed open (vulnerable) services.
+# Data Harmonization Ontology
 
-With data harmonization covered briefly, we move on to defining an ontology. An ontology in our case is a higher level abstraction of a language, where each lexeme addresses an observable characteristic of either an Indicator of Compromise (IOC) or an open and vulnerable service discovered through actively scanning the Internet. Our grammar is thus expressed as sets of key-value pairs, which are straightforward to serialize into flat dictionaries.
+The purpose of this document is to describe a data harmonization ontology, which can be used to organize heterogeneous threat data for the purposes of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different audience in mind, namely:
 
-We reference **observations** as collections of ontology driven key-value pairs. Please note that we use the term **key** to denote an observation schema and the term **attribute** to denote an ontology lexeme.
+ * *suspected compromise* for incident response
+ * *vulnerability* for vulnerability management
+ * *exposure* for threat surface management
+ * *plausible harm* for data analysis and risk assessment.
 
-## Ontology, Schema or Taxonomy
+## What is data harmonization?
 
-As stated above, an ontology is a higher level abstraction of the semantic characteristics of an observable item. A schema, on the other hand, is a technical contract to transfer or store data in a prescribed format. Both are needed, but we see schemas as derivatives of an underlying semantic representation, which for our purposes is an ontology. In contrast with hierarchical taxonomies, an ontology allows for lexemes outside the core language, provided the definition does not duplicate or redefine that of an already established one. This  calls for harmonization. Consequently, the traditional way of dealing with the unknown in taxonomies has been the introduction of the **other** category, which simply fails over time. We have worked hard to avoid this.
+The purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation which belongs to one of the categories outlined above.
+
+With data harmonization covered briefly, we move on to defining an ontology. An ontology in our case is a higher level abstraction of a language, where each lexeme addresses an observable characteristic of an observation. Our grammar is thus expressed as sets of key-value pairs, which are straightforward to serialize into flat dictionaries. We reference **observations** as collections of ontology driven key-value pairs. Please note that we use the term **key** to denote an observation schema and the term **attribute** to denote an ontology lexeme.
+
+### Ontology, Schema or Taxonomy
+
+As stated above, an ontology is a higher level abstraction of the semantic characteristics of an observable item. A schema, on the other hand, is a technical contract to transfer or store data in a prescribed format. Both are needed, but we see schemas as derivatives of an underlying semantic representation, which for our purposes is an ontology. In contrast with hierarchical taxonomies, an ontology allows for lexemes outside the core language, provided the definition does not duplicate or redefine that of an already established one. This  calls for harmonization. Consequently, the traditional way of dealing with the unknown in taxonomies has been the introduction of the **other** category, which simply fails over time. We have worked hard to avoid this phenomenon.
+
+# Classification Attributes
+
+It is important to be able to classify, prioritize and report relevant actionable observations to parties who need to be informed; working with a functional ontology, especially for observation categories and types, is essential for this.
+
+|attribute|description|
+--- | --- |
+|category|A functional category describes the intended audience for a given observation. It in itself is a collection of functional types with a specific use for the given audience, e.g. *suspected compromise* must contain observations which merit incident response.|
+|type|The **type** attribute is one of the most crucial pieces of information for any given threat observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
+
+## Categories and Types
+
+As stated above, a functional category defines the intended audience. At present we define four distinct categories, each of which has a specific audience. 
+
+|attribute|audience|description|
+--- | --- | --- |
+|suspected compromise|incident response|This category of information details a specific recipient asset, which has been observed by a third party to be compromised.|
+|vulnerability|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
+|exposure|threat surface management|This category of information details services or ports which are unintentionally exposed to the Internet.|
+|plausible harm|data analysis|FixMe|
+
+Below, we will detail each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
+
+### Suspected Compromise
+
+FixMe
+
+|attribute|description|impact|
+--- | --- | --- |
+|artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These indicators do not directly reference a compromise, rather can be used for monitoring and detection.|
+|backdoor|Backdoor indicators refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
+|botnet drone|The most numerous type of abuse, as it refers to compromised computers calling out to a command and control mechanism.|These hosts are most likely infected by a piece of malware and controlled by the threat actors.|
+|brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh|These hosts are most likely infected by malware or compromised and are trying to break into other computers or services.|
+|c&c|A command and control server in charge of a given number of botnet drones.|This computer or service is controlling a botnet and functioning as part of the threat actor infrastructure.|
+|compromised server|This server or service has been compromised by a third party.|These hosts or services are under the threat actor control to do their bidding.|
+|ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not been necessarily compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
+|defacement|This type refers to hacktivism, which on a technical level is an indicator of a compromised service.|This host is compromised by a third party and very often is used for other criminal activities as well.|
+|dropzone|This type refers to a resource which is used to store stolen user data.|PII is often stored unlawfully on these hosts or services.|
+|exploitation|This type refers to attempted or successful exploitation of a vulnerable service.|A successful exploitation of a vulnerable service will lead to unauthorized use of this host or service.|
+|exploit url|An exploit or an exploit kit is often served through a malicious URL.|These URLs are used by the threat actors to spread malware. These hosts or services are often compromised to facilitate this activity.|
+|malware configuration|This is a resource which updates botnet drones with a new configurations.|These hosts or services function as part of threat actor infrastructure and are often compromised by threat actors.|
+|malware url|A URL is the most common resource with reference to malware binary distribution.|These hosts are serving pieces of malware to infect new machines and are usually compromised by the threat actors.|
+|phishing|This type most often refers to a URL or domain name used to defraud the users of their credentials.|These URLs or domain names are served to potential victims to try to steal their credentials to a third party service. These hosts are often also compromised by threat actors.|
+|ransomware|This type refers to a specific type of compromised machine, where the computer has been hijacked for ransom by the criminals.|The disk resources of these hosts are encrypted by the criminals for ransom or sabotage. This may lead to the encryption of disk resources for an entire organization.|
+|scanner|This type refers to port or vulnerability scanning attempts in general.|These hosts are scanning for vulnerable services to enable threat actors to compromise them. The host doing the scanning are often compromised or infected as well.|
+|sensor alert|FixMe! This type refers to indicator matches, which have resulted from a network based indicator matching.|The host triggering these alerts should be triaged, taking into account the indicator which has caused the alert and the constraints of the local environment.|
+|spam infrastructure|This type refers to resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
+|test|Used for testing purposes.|These events can be used to test a victim notification pipeline for example, without impacting the functionality of the service.|
+
+### Vulnerability
+
+FixMe
+
+|attribute|description|impact|
+--- | --- | --- |
+|ddos amplifier|FixMe|FixMe|
+|vulnerable service|FixMe! This type refers to poorly configured or vulnerable network service, which may be abused by a third party. For example, these services relate to open proxies, open DNS resolvers, network time servers (NTP), character generation services (CharGen) or simple network management services (SNMP). In addition, to specify the network service and its potential abuse, one should also use the protocol, port and description attributes.|These services make it easy for the threat actors to perform their deeds without having to necessarily compromise a large number of hosts on the Internet.|
+|test|Used for testing purposes.|These events can be used to test a victim notification pipeline for example, without impacting the functionality of the service.|
+
+### Exposure
+
+FixMe
+
+|attribute|description|impact|
+--- | --- | --- |
+|exposed service|FixMe|FixMe|
+|open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise.|
+|open port|FixMe|FixMe|
+|test|Used for testing purposes.|These events can be used to test a victim notification pipeline for example, without impacting the functionality of the service.|
+
+### Plausible Harm
+
+FixMe
+
+|attribute|description|impact|
+--- | --- | --- |
+|attribution|Observations which can be attributed to malicious activity without a specific functional category such as a command and control server.|These indicators attribute infrastructure to potential actors, but cannot be directly used for victim notification, since the nature of the compromise is often unspecified.
+|blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely. This type should only be used if the typing fits the definition of a reputation list, but an event specific denomination is not possible for one reason or another.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
+|compromised account|A user account which has been compromised byt a third party.|These compromised user accounts may lead to further unauthorized use through password re-use even if the compromised service is not part of the victim infrastructure.|
+|ddos target|This type refers to the intended target of a DDoS attack: the intended domain name or IP address.|This host or service will most likely be unavailable because of the DDoS attack.|
+
 
 # Core Attributes
 
@@ -129,6 +219,7 @@ The idea behind the additional attributes is to present generic observation meta
 |missing data|If the harmonization is missing a known piece of data (such as an **ip** for example), the reference to this fact may be inserted here.|
 |protocol|The protocol attribute describes the application protocol on top of the transport which relates to the observed abuse or vulnerable service; that is, "protocol=ssh" for SSH brute-force attacks is more descriptive than "protocol=tcp". In this case the transport protocol should be referenced by that key, "transport protocol=tcp".|
 |service|In addition to describing a port and protocol for a given observation, one may need to describe the service which is listening on that port which is described by the observation, such as a publicly exposed vulnerability.|
+|severity|FixMe|
 |source|Aggregated feeds use indicators not obtained directly from the feeder. Some aggregated feeds report a source of this external information. This key can be used to denote those external feeder entities, such as in the case of reputation list aggregation. Note the source is external to a feeder or their feed offering.|
 |status|Observed status of the malicious resource phishing URL, dropzone, command and control server; for example, online, offline.|
 |target|Some sources such as phishing feeds designate the target of a phishing campaign.|
@@ -151,47 +242,6 @@ Host-based artifacts play a role in incident handling, and having a means to rel
 |artifact content type|Functional typing for the artifact content in question, e.g. a detection rule or a functional artifact such as a registry key or mutex.|
 |artifact hash|A string depicting a checksum or hash of a file, be it a malware or other sample.|
 |artifact hash type|The hashing algorithm used for artifact hash type above, such as MD5 or SHA-N etc.|
-
-## Classification Attributes
-
-It is important to be able to classify, prioritize and report relevant actionable observations to parties who need to be informed; working with a functional ontology, especially for abuse types, is essential for this.
-
-|attribute|description|
---- | --- |
-|type|The **type** attribute is one of the most crucial pieces of information for any given threat observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
-
-### Type Values
-
-The **type** values offer a data-backed taxonomy for classifying threat observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
-
-|attribute|description|impact|
---- | --- | --- |
-|artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These indicators do not directly reference a compromise, rather can be used for monitoring and detection.|
-|attribution|Indicators which can be attributed to malicious activity without a specific functional category such as a command and control server.|These indicators attribute infrastructure to potential actors, but cannot be directly used for victim notification, since the nature of the compromise is often unspecified.
-|backdoor|Backdoor indicators refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
-|blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely. This type should only be used if the typing fits the definition of a reputation list, but an event specific denomination is not possible for one reason or another.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
-|botnet drone|The most numerous type of abuse, as it refers to compromised computers calling out to a command and control mechanism.|These hosts are most likely infected by a piece of malware and controlled by the threat actors.|
-|brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh|These hosts are most likely infected by malware or compromised and are trying to break into other computers or services.|
-|c&c|A command and control server in charge of a given number of botnet drones.|This computer or service is controlling a botnet and functioning as part of the threat actor infrastructure.|
-|compromised account|A user account which has been compromised byt a third party.|These compromised user accounts may lead to further unauthorized use through password re-use even if the compromised service is not part of the victim infrastructure.|
-|compromised server|This server or service has been compromised by a third party.|These hosts or services are under the threat actor control to do their bidding.|
-|ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not been necessarily compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
-|ddos target|This type refers to the intended target of a DDoS attack: the intended domain name or IP address.|This host or service will most likely be unavailable because of the DDoS attack.|
-|defacement|This type refers to hacktivism, which on a technical level is an indicator of a compromised service.|This host is compromised by a third party and very often is used for other criminal activities as well.|
-|dropzone|This type refers to a resource which is used to store stolen user data.|PII is often stored unlawfully on these hosts or services.|
-|exploitation|This type refers to attempted or successful exploitation of a vulnerable service.|A successful exploitation of a vulnerable service will lead to unauthorized use of this host or service.|
-|exploit url|An exploit or an exploit kit is often served through a malicious URL.|These URLs are used by the threat actors to spread malware. These hosts or services are often compromised to facilitate this activity.|
-|ids alert|Alerts from a heuristic sensor network. This is a generic classification, as often the taxonomy of these types of events lack consistency.|These indicators denote potential malicious activity either in the network traffic or system logs.|
-|malware configuration|This is a resource which updates botnet drones with a new configurations.|These hosts or services function as part of threat actor infrastructure and are often compromised by threat actors.|
-|malware url|A URL is the most common resource with reference to malware binary distribution.|These hosts are serving pieces of malware to infect new machines and are usually compromised by the threat actors.|
-|open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise.|
-|phishing|This type most often refers to a URL or domain name used to defraud the users of their credentials.|These URLs or domain names are served to potential victims to try to steal their credentials to a third party service. These hosts are often also compromised by threat actors.|
-|ransomware|This type refers to a specific type of compromised machine, where the computer has been hijacked for ransom by the criminals.|The disk resources of these hosts are encrypted by the criminals for ransom or sabotage. This may lead to the encryption of disk resources for an entire organization.|
-|scanner|This type refers to port or vulnerability scanning attempts in general.|These hosts are scanning for vulnerable services to enable threat actors to compromise them. The host doing the scanning are often compromised or infected as well.|
-|sensor alert|This type refers to indicator matches, which have resulted from a network based indicator matching.|The host triggering these alerts should be triaged, taking into account the indicator which has caused the alert and the constraints of the local environment.|
-|spam infrastructure|This type refers to resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
-|test|Used for testing purposes.|These events can be used to test a victim notification pipeline for example, without impacting the functionality of the service.|
-|vulnerable service|This type refers to poorly configured or vulnerable network service, which may be abused by a third party. For example, these services relate to open proxies, open DNS resolvers, network time servers (NTP), character generation services (CharGen) or simple network management services (SNMP). In addition, to specify the network service and its potential abuse, one should also use the protocol, port and description attributes.|These services make it easy for the threat actors to perform their deeds without having to necessarily compromise a large number of hosts on the Internet.|
 
 ## Topic- or Provider-Specific Attributes
 
