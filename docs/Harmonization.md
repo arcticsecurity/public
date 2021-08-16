@@ -2,59 +2,63 @@
 
 # Data Harmonization Ontology
 
-The purpose of this document is to describe a data harmonization ontology, which can be used to organize heterogeneous threat data for the purposes of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different audience in mind, namely:
+The purpose of this document is to describe a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different audience in mind, namely:
 
  * *suspected compromise* for incident response
  * *vulnerability* for vulnerability management
  * *exposure* for threat surface management
  * *plausible harm* for data analysis and risk assessment.
 
+Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approached data harmonization from the victim notification perspective.
+
 ## What is data harmonization?
 
-The purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation which belongs to one of the categories outlined above.
+The purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation which belongs to one of the *categories* outlined above.
 
-With data harmonization covered briefly, we move on to defining an ontology. An ontology in our case is a higher level abstraction of a language, where each lexeme addresses an observable characteristic of an observation. Our grammar is thus expressed as sets of key-value pairs, which are straightforward to serialize into flat dictionaries. We reference **observations** as collections of ontology driven key-value pairs. Please note that we use the term **key** to denote an observation schema and the term **attribute** to denote an ontology lexeme.
+With data harmonization covered briefly, we move on to defining an ontology. An ontology in our case is a higher level abstraction of a language, where each lexeme addresses a discernible characteristic of an observation. Our grammar is thus expressed as sets of key-value pairs, which are straightforward to serialize into flat dictionaries. We reference **observations** as collections of ontology driven key-value pairs. Please note that we use the term **key** to denote an observation schema and the term **attribute** to denote an ontology lexeme.
 
 ### Ontology, Schema or Taxonomy
 
-As stated above, an ontology is a higher level abstraction of the semantic characteristics of an observable item. A schema, on the other hand, is a technical contract to transfer or store data in a prescribed format. Both are needed, but we see schemas as derivatives of an underlying semantic representation, which for our purposes is an ontology. In contrast with hierarchical taxonomies, an ontology allows for lexemes outside the core language, provided the definition does not duplicate or redefine that of an already established one. This  calls for harmonization. Consequently, the traditional way of dealing with the unknown in taxonomies has been the introduction of the **other** category, which simply fails over time. We have worked hard to avoid this phenomenon.
+As stated above, an ontology is a higher level abstraction of the semantic characteristics of an observable item. A schema, on the other hand, is a technical contract to transfer or store data in a prescribed format. Both are needed, but we see schemas as derivatives of an underlying semantic representation, which for our purposes is an ontology. In contrast with hierarchical taxonomies, an ontology allows for lexemes outside the core language, provided the definition does not duplicate or redefine that of an already established one. This  calls for harmonization. Consequently, the traditional way of dealing with the unknown in hierarchical taxonomies has been the introduction of the **other** category, which simply fails over time. We have worked hard to avoid this phenomenon.
 
 # Classification Attributes
 
-It is important to be able to classify, prioritize and report relevant actionable observations to parties who need to be informed; working with a functional ontology, especially for observation categories and types, is essential for this.
+It is important to be able to classify, prioritize and report relevant actionable observations to parties who need to be informed; working with a functional ontology, especially for observation categories and types is essential for this, as detailed below.
 
 |attribute|description|
 --- | --- |
 |category|A functional category describes the intended audience for a given observation. It in itself is a collection of functional types with a specific use for the given audience, e.g. *suspected compromise* must contain observations which merit incident response.|
 |type|The **type** attribute is one of the most crucial pieces of information for any given threat observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
 
+To keep communication clear and tailored to the needs of the intended audience, we retain a 1:1 mapping between a category and a type, i.e. only the type *test* is a member of multiple categories. All the other types belong only to a single category.
+
 ## Categories and Types
 
-As stated above, a functional category defines the intended audience. At present we define four distinct categories, each of which has a specific audience. 
+As stated above, a functional category defines the intended audience. At present we define four distinct categories, each of which has a specific audience.
 
 |attribute|audience|description|
 --- | --- | --- |
 |suspected compromise|incident response|This category of information details a specific recipient asset, which has been observed by a third party to be compromised.|
 |vulnerability|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
 |exposure|threat surface management|This category of information details services or ports which are unintentionally exposed to the Internet.|
-|plausible harm|data analysis|FixMe|
+|plausible harm|data/risk analysis|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
 
-Below, we will detail each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
+Below, we detail each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
 
 ### Suspected Compromise
 
-FixMe
+The traditional form of victim notification relates to observations which detail a network resource which is believed to be abused by a third party. A good example of this type of observation is a malware infected machine, which has reached out to a command and control server despite the security controls of the affected organization. Below, we enumerate the functional types which detail malice in a way that should instigate incident response activities in the affected organization immediately.
 
 |attribute|description|impact|
 --- | --- | --- |
-|artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These indicators do not directly reference a compromise, rather can be used for monitoring and detection.|
-|backdoor|Backdoor indicators refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
+|artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These observations do not directly reference a compromise, rather can be used for monitoring and detection.|
+|backdoor|Backdoor observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
 |botnet drone|The most numerous type of abuse, as it refers to compromised computers calling out to a command and control mechanism.|These hosts are most likely infected by a piece of malware and controlled by the threat actors.|
 |brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh|These hosts are most likely infected by malware or compromised and are trying to break into other computers or services.|
 |c&c|A command and control server in charge of a given number of botnet drones.|This computer or service is controlling a botnet and functioning as part of the threat actor infrastructure.|
 |compromised server|This server or service has been compromised by a third party.|These hosts or services are under the threat actor control to do their bidding.|
 |ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not been necessarily compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
-|defacement|This type refers to hacktivism, which on a technical level is an indicator of a compromised service.|This host is compromised by a third party and very often is used for other criminal activities as well.|
+|defacement|This type refers to hacktivism, which on a technical level is indicative of a compromised service.|This host is compromised by a third party and very often is used for other criminal activities as well.|
 |dropzone|This type refers to a resource which is used to store stolen user data.|PII is often stored unlawfully on these hosts or services.|
 |exploitation|This type refers to attempted or successful exploitation of a vulnerable service.|A successful exploitation of a vulnerable service will lead to unauthorized use of this host or service.|
 |exploit url|An exploit or an exploit kit is often served through a malicious URL.|These URLs are used by the threat actors to spread malware. These hosts or services are often compromised to facilitate this activity.|
@@ -62,43 +66,44 @@ FixMe
 |malware url|A URL is the most common resource with reference to malware binary distribution.|These hosts are serving pieces of malware to infect new machines and are usually compromised by the threat actors.|
 |phishing|This type most often refers to a URL or domain name used to defraud the users of their credentials.|These URLs or domain names are served to potential victims to try to steal their credentials to a third party service. These hosts are often also compromised by threat actors.|
 |ransomware|This type refers to a specific type of compromised machine, where the computer has been hijacked for ransom by the criminals.|The disk resources of these hosts are encrypted by the criminals for ransom or sabotage. This may lead to the encryption of disk resources for an entire organization.|
-|scanner|This type refers to port or vulnerability scanning attempts in general.|These hosts are scanning for vulnerable services to enable threat actors to compromise them. The host doing the scanning are often compromised or infected as well.|
-|sensor alert|FixMe! This type refers to indicator matches, which have resulted from a network based indicator matching.|The host triggering these alerts should be triaged, taking into account the indicator which has caused the alert and the constraints of the local environment.|
+|scanner|This type refers to machines which are performing port or vulnerability scanning attempts in general.|These hosts are scanning for vulnerable services to enable threat actors to compromise them. The host doing the scanning are often compromised or infected as well.|
+|sensor alert|This type of observation refers to rule or identity based matches on a sensor device, which cannot directly be assigned a functional type.|The host triggering these alerts should be triaged, taking into account the indicator which has triggered the alert and the constraints of the local environment.|
 |spam infrastructure|This type refers to resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
-|test|Used for testing purposes.|These events can be used to test a victim notification pipeline for example, without impacting the functionality of the service.|
+|test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Vulnerability
 
-FixMe
+This category of information refers to observations, which detail a technical vulnerability present on a service. For early warning, it is important to denote the ip, vulnerability, protocol, service and port as well. For generic vulnerability management, the affected product and remediation information will be useful as well.
 
 |attribute|description|impact|
 --- | --- | --- |
-|ddos amplifier|FixMe|FixMe|
-|vulnerable service|FixMe! This type refers to poorly configured or vulnerable network service, which may be abused by a third party. For example, these services relate to open proxies, open DNS resolvers, network time servers (NTP), character generation services (CharGen) or simple network management services (SNMP). In addition, to specify the network service and its potential abuse, one should also use the protocol, port and description attributes.|These services make it easy for the threat actors to perform their deeds without having to necessarily compromise a large number of hosts on the Internet.|
-|test|Used for testing purposes.|These events can be used to test a victim notification pipeline for example, without impacting the functionality of the service.|
+|ddos amplifier|These observations refer to misconfigured network services, which are vulnerable to DDoS reflection often over UDP.|Even if this vulnerability doesn't directly affect the confidentiality or integrity of the host in question, the resource or upstream bandwidth consumption can affect availability.|
+|vulnerable service|These observations refer to specific technical vulnerabilities present on a network service, which have or will be assigned a CVE by MITRE.|The CVE assigned to the vulnerability affect the host in various ways. The CIA triad and CVSS score are metrics, which detail severity of the vulnerability. Remote code execution is a good example of a severe impact.| 
+|cve|This type of observation identifies a product and a version of software, which contains a specific vulnerability.|These observations do not detail the affected host or service, rather than they can be used to identify such services especially if they are not directly exposed to the Internet or are client side vulnerabilities.|
+|test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Exposure
 
-FixMe
+Exposure denotes observations which are useful in trying to minimize a network owner's attack surface. The observations can take place on the level of a network service or that of an open port and transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in remediation. Often an exposed service or port is remediated through a firewall rule or access control list, or configuration option and not by patching a specific vulnerability in the implementation.
 
 |attribute|description|impact|
 --- | --- | --- |
-|exposed service|FixMe|FixMe|
-|open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise.|
-|open port|FixMe|FixMe|
-|test|Used for testing purposes.|These events can be used to test a victim notification pipeline for example, without impacting the functionality of the service.|
+|exposed service|These observations relate to network services, which should not be directly exposed to the Internet.|The implementations of these types of service have not been designed and implemented with the needs of the Internet in mind and can often be trivially compromised. A good example of this type of a service is RDP.|
+|open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise. A good example of this type of a service is FTP.|
+|open port|These types of observations relate to a host which exposes a port to the Internet, but which doesn't specify the service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
+|test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Plausible Harm
 
-FixMe
+Plausible harm denotes a category of observations which attribute a perceived harm to an organization without specifying the risk in question on a level, which would directly possible to remediate by the affected organization. The attribution may refer to an asset without detailing the exact resource, such as a URL. It may be a resource that is blocked by a third party or it may be a service offered by a third party, whose users belong to the affected organization. In each case the actual remediation will require further analysis by the affected organization.
 
 |attribute|description|impact|
 --- | --- | --- |
 |attribution|Observations which can be attributed to malicious activity without a specific functional category such as a command and control server.|These indicators attribute infrastructure to potential actors, but cannot be directly used for victim notification, since the nature of the compromise is often unspecified.
 |blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely. This type should only be used if the typing fits the definition of a reputation list, but an event specific denomination is not possible for one reason or another.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
 |compromised account|A user account which has been compromised byt a third party.|These compromised user accounts may lead to further unauthorized use through password re-use even if the compromised service is not part of the victim infrastructure.|
-|ddos target|This type refers to the intended target of a DDoS attack: the intended domain name or IP address.|This host or service will most likely be unavailable because of the DDoS attack.|
-
+|ddos target|This observation type refers to an intended target of a DDoS attack, i.e. the domain name or IP address that is being subjected to DDoS traffic.|This host or service may be unavailable because of the DDoS attack.|
+|test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 # Core Attributes
 
