@@ -9,7 +9,7 @@ The purpose of this document is to describe a data harmonization ontology, which
  * **exposure** for threat surface management
  * **plausible harm** for data analysis and risk assessment.
 
-Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approached data harmonization from the victim notification perspective.
+Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approach data harmonization from the victim notification perspective.
 
 ## What is data harmonization?
 
@@ -222,7 +222,7 @@ The idea behind the additional attributes is to present generic observation meta
 |http request|Some feeders report HTTP requests instead of URLs. The feeders may call them URLs but for the sake of interoperability with automation, such events should be placed under the "http request" key as there is no guarantee that the protocol scheme is HTTP.|
 |malware family|A malware family name, in lower case.|
 |missing data|If the harmonization is missing a known piece of data (such as an **ip** for example), the reference to this fact may be inserted here.|
-|protocol|The protocol attribute describes the application protocol on top of the transport which relates to the observatio in question; that is, "protocol=ssh" for SSH brute-force attacks is more descriptive than "protocol=tcp". In this case the transport protocol should be referenced by that key, "transport protocol=tcp".|
+|protocol|The protocol attribute describes the application protocol on top of the transport which relates to the observation in question; that is, "protocol=ssh" for SSH brute-force attacks is more descriptive than "protocol=tcp". In this case the transport protocol should be referenced by that key, "transport protocol=tcp".|
 |service|In addition to describing a port and protocol for a given observation, one may need to describe the service which is listening on that port which is described by the observation, such as a publicly exposed vulnerability.|
 |severity|Often observations need to be prioritized and technical severity can be used to denote the urgency of the observation to the recipient, e.g. low, medium, high.|
 |source|Aggregated feeds use observations not obtained directly by the feeder. Some aggregated feeds report a source of this external information. This key can be used to denote those external feeder entities, such as in the case of reputation list aggregation. N.B. the source is external to the feeder or their feed offering.|
@@ -246,7 +246,7 @@ Host-based artifacts play a role in incident handling, and having a means to rel
 |artifact content|A funtional or rule-based description of malicious content.|
 |artifact content type|Functional typing for the artifact content in question, e.g. a detection rule or a functional artifact such as a registry key or mutex.|
 |artifact hash|A string depicting a checksum or hash of a file, be it a malware or other sample.|
-|artifact hash type|The hashing algorithm used for artifact hash type above, such as MD5 or SHA-N etc.|
+|artifact hash type|The hashing algorithm used for artifact hash type above, such as MD5 or SHA-3 etc.|
 
 ## Topic- or Provider-Specific Attributes
 
