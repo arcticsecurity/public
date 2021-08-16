@@ -77,7 +77,7 @@ This category of information refers to observations, which detail a technical vu
 
 |attribute|description|impact|
 --- | --- | --- |
-|ddos amplifier|These observations refer to misconfigured network services, which are vulnerable to DDoS reflection often over UDP.|Even if this vulnerability doesn't directly affect the confidentiality or integrity of the host in question, the resource or upstream bandwidth consumption can affect availability.|
+|ddos amplifier|These observations refer to misconfigured network services, which are vulnerable to DDoS reflection often over UDP.|Even if this vulnerability does not directly affect the confidentiality or integrity of the host in question, the resource or upstream bandwidth consumption can affect availability.|
 |vulnerable service|These observations refer to specific technical vulnerabilities present on a network service, which have or will be assigned a CVE by MITRE.|The CVE assigned to the vulnerability affect the host in various ways. The CIA triad and CVSS score are metrics, which detail severity of the vulnerability. Remote code execution is a good example of a severe impact.| 
 |cve|This type of observation identifies a product and a version of software, which contains a specific vulnerability.|These observations do not detail the affected host or service, rather than they can be used to identify such services especially if they are not directly exposed to the Internet or are client side vulnerabilities.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
