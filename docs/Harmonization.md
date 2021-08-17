@@ -5,8 +5,8 @@
 The purpose of this document is to describe a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different audience in mind, namely:
 
  * **suspected compromise** for incident response
- * **vulnerability** for vulnerability management
- * **exposure** for systems or network administration
+ * **vulnerabilities** for vulnerability management
+ * **public exposure** for configuration management
  * **plausible harm** for threat analysis or risk assessment.
 
 Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approach data harmonization from the victim notification perspective and taking into account the needs of the recipient.
@@ -38,10 +38,10 @@ As stated above, a functional category defines the intended audience. At present
 
 |attribute|audience|description|
 --- | --- | --- |
-|suspected compromise|incident response|This category of information details a specific recipient asset, which has been observed by a third party to be compromised.|
-|vulnerability|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
-|exposure|systems or network administration|This category of information details services or ports which are unintentionally exposed to the Internet.|
-|plausible harm|data/risk analysis|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
+|suspected compromise|incident response|This category of information details a specific recipient assets, which have been observed by a third party to be compromised.|
+|vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
+|public exposure|configuration management|This category of information details services or ports which are publicly exposed to the Internet.|
+|plausible harm|threat analysis or risk assessment|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
 
 Below, we detail each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
 
@@ -70,7 +70,7 @@ The traditional form of victim notification relates to observations which detail
 |spam infrastructure|This type refers to resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
-### Vulnerability
+### Vulnerabilities
 
 This category of information refers to observations, which detail a technical vulnerability present on a service. For early warning, it is important to denote the ip, vulnerability, protocol, service and port as well. For generic vulnerability management, the affected product and remediation information will be useful as well.
 
@@ -80,7 +80,7 @@ This category of information refers to observations, which detail a technical vu
 |vulnerable service|These observations refer to specific technical vulnerabilities present on a network service, which have or will be assigned a CVE by MITRE.|The CVE assigned to the vulnerability affect the host in various ways. The CIA triad and CVSS score are metrics, which detail severity of the vulnerability. Remote code execution is a good example of a severe impact.| 
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
-### Exposure
+### Public Exposure
 
 Exposure denotes observations which are useful in trying to minimize a network owner's attack surface. The observations can take place on the level of a network service or that of an open port and transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in remediation. Often an exposed service or port is remediated through a firewall rule or access control list, or configuration option and not by patching a specific vulnerability in the implementation.
 
@@ -210,7 +210,7 @@ We acknowledge IP geolocation is not an exact science, and our analysis has show
 
 ## Additional Attributes
 
-The idea behind the additional attributes is to present generic observation metadata which complements the identity or temporal information about the observed activity, be it suspected compromise, vulnerability, exposure or plausible harm. In addition, the purpose of this information is to give more context to the observation type denoted by the **type** attribute.
+The idea behind the additional attributes is to present generic observation metadata which complements the identity or temporal information about the observed activity, be it suspected compromise, vulnerabilities, public exposure or plausible harm. In addition, the purpose of this information is to give more context to the observation type denoted by the **type** attribute.
 
 |attribute|description|
 --- | --- |
