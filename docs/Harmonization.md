@@ -9,7 +9,7 @@ The purpose of this document is to describe a data harmonization ontology, which
  * **public exposure** for configuration management
  * **potential threats** for threat analysis or risk assessment.
 
-Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approach data harmonization from the victim notification perspective and taking into account the needs of the recipient.
+Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in the operation of an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding of how we have approach data harmonization from the victim notification perspective.
 
 ## What is data harmonization?
 
