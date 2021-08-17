@@ -7,7 +7,7 @@ The purpose of this document is to describe a data harmonization ontology, which
  * **suspected compromise** for incident response
  * **vulnerabilities** for vulnerability management
  * **public exposure** for configuration management
- * **plausible harm** for threat analysis or risk assessment.
+ * **potential threats** for threat analysis or risk assessment.
 
 Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approach data harmonization from the victim notification perspective and taking into account the needs of the recipient.
 
@@ -41,7 +41,7 @@ As stated above, a functional category defines the intended audience. At present
 |suspected compromise|incident response|This category of information details a specific recipient assets, which have been observed by a third party to be compromised.|
 |vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
 |public exposure|configuration management|This category of information details services or ports which are publicly exposed to the Internet.|
-|plausible harm|threat analysis or risk assessment|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
+|potential threats|threat analysis or risk assessment|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
 
 Below, we detail each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
 
@@ -91,9 +91,9 @@ Exposure denotes observations which are useful in trying to minimize a network o
 |open port|These types of observations relate to a host which exposes a port to the Internet, but which doesn't specify the service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
-### Plausible Harm
+### Potential Threats
 
-Plausible harm denotes a category of observations which attribute a perceived harm to an organization without specifying the risk in question on a level, which would directly possible to remediate by the affected organization. The attribution may refer to an asset without detailing the exact resource, such as a URL. It may be a resource that is blocked by a third party or it may be a service offered by a third party, whose users belong to the affected organization. In each case the actual remediation will require further analysis by the affected organization.
+Potential threats denotes a category of observations which attribute a perceived harm to an organization without specifying the threat in question on a level, which would directly possible to remediate by the affected organization. The attribution may refer to an asset without detailing the exact resource, such as a URL. It may be a resource that is blocked by a third party or it may be a service offered by a third party, whose users belong to the affected organization. In each case the actual remediation will require further analysis by the affected organization.
 
 |attribute|description|impact|
 --- | --- | --- |
@@ -210,7 +210,7 @@ We acknowledge IP geolocation is not an exact science, and our analysis has show
 
 ## Additional Attributes
 
-The idea behind the additional attributes is to present generic observation metadata which complements the identity or temporal information about the observed activity, be it suspected compromise, vulnerabilities, public exposure or plausible harm. In addition, the purpose of this information is to give more context to the observation type denoted by the **type** attribute.
+The idea behind the additional attributes is to present generic observation metadata which complements the identity or temporal information about the observed activity, be it suspected compromise, vulnerabilities, public exposure or potential threats. In addition, the purpose of this information is to give more context to the observation type denoted by the **type** attribute.
 
 |attribute|description|
 --- | --- |
