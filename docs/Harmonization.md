@@ -6,8 +6,8 @@ The purpose of this document is to describe a data harmonization ontology, which
 
  * **suspected compromise** for incident response
  * **vulnerability** for vulnerability management
- * **exposure** for threat surface management
- * **plausible harm** for data analysis and risk assessment.
+ * **exposure** for systems or network administration
+ * **plausible harm** for threat analysis or risk assessment.
 
 Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approach data harmonization from the victim notification perspective.
 
@@ -40,7 +40,7 @@ As stated above, a functional category defines the intended audience. At present
 --- | --- | --- |
 |suspected compromise|incident response|This category of information details a specific recipient asset, which has been observed by a third party to be compromised.|
 |vulnerability|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
-|exposure|threat surface management|This category of information details services or ports which are unintentionally exposed to the Internet.|
+|exposure|systems or network administration|This category of information details services or ports which are unintentionally exposed to the Internet.|
 |plausible harm|data/risk analysis|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
 
 Below, we detail each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
