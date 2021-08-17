@@ -5,7 +5,7 @@
 The purpose of this document is to describe a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different audience in mind, namely:
 
  * **suspected compromise** for incident response
- * **vulnerabilities** for vulnerability management
+ * **known vulnerabilities** for vulnerability management
  * **public exposure** for configuration management
  * **potential threats** for threat analysis or risk assessment.
 
@@ -39,7 +39,7 @@ As stated above, a functional category defines the intended audience. At present
 |attribute|audience|description|
 --- | --- | --- |
 |suspected compromise|incident response|This category of information details a specific recipient assets, which have been observed by a third party to be compromised.|
-|vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
+|known vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
 |public exposure|configuration management|This category of information details services or ports which are publicly exposed to the Internet.|
 |potential threats|threat analysis or risk assessment|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
 
@@ -70,7 +70,7 @@ The traditional form of victim notification relates to observations which detail
 |spam infrastructure|This type refers to resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
-### Vulnerabilities
+### Known Vulnerabilities
 
 This category of information refers to observations, which detail a technical vulnerability present on a service. For early warning, it is important to denote the ip, vulnerability, protocol, service and port as well. For generic vulnerability management, the affected product and remediation information will be useful as well.
 
@@ -210,7 +210,7 @@ We acknowledge IP geolocation is not an exact science, and our analysis has show
 
 ## Additional Attributes
 
-The idea behind the additional attributes is to present generic observation metadata which complements the identity or temporal information about the observed activity, be it suspected compromise, vulnerabilities, public exposure or potential threats. In addition, the purpose of this information is to give more context to the observation type denoted by the **type** attribute.
+The idea behind the additional attributes is to present generic observation metadata which complements the identity or temporal information about the observed activity, be it suspected compromise, known vulnerabilities, public exposure or potential threats. In addition, the purpose of this information is to give more context to the observation type denoted by the **type** attribute.
 
 |attribute|description|
 --- | --- |
