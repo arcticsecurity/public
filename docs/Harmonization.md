@@ -9,11 +9,11 @@ The purpose of this document is to describe a data harmonization ontology, which
  * **exposure** for systems or network administration
  * **plausible harm** for threat analysis or risk assessment.
 
-Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approach data harmonization from the victim notification perspective.
+Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in operating an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding how we have approach data harmonization from the victim notification perspective and taking into account the needs of the recipient.
 
 ## What is data harmonization?
 
-The purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation which belongs to one of the **categories** outlined above.
+The primary purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation which belongs to one of the **categories** outlined above.
 
 With data harmonization covered briefly, we move on to defining an ontology. An ontology in our case is a higher level abstraction of a language, where each lexeme addresses a discernible characteristic of an observation. Our grammar is thus expressed as sets of key-value pairs, which are straightforward to serialize into flat dictionaries. We reference **observations** as collections of ontology driven key-value pairs. Please note that we use the term **key** to denote an observation schema and the term **attribute** to denote an ontology lexeme.
 
@@ -23,7 +23,7 @@ As stated above, an ontology is a higher level abstraction of the semantic chara
 
 # Classification Attributes
 
-It is important to be able to classify, prioritize and report relevant actionable observations to parties who need to be informed; working with a functional ontology, especially for observation categories and types is essential for this, as detailed below.
+It is important to be able to classify, prioritize and report relevant actionable observations based on the needs of the recipient; working with a functional ontology, especially for observation categories and types is essential for this, as detailed below.
 
 |attribute|description|
 --- | --- |
@@ -51,7 +51,6 @@ The traditional form of victim notification relates to observations which detail
 
 |attribute|description|impact|
 --- | --- | --- |
-|artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These observations do not directly reference a compromise, rather can be used for monitoring and detection.|
 |backdoor|Backdoor observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
 |botnet drone|The most numerous type of abuse, as it refers to compromised computers calling out to a command and control mechanism.|These hosts are most likely infected by a piece of malware and controlled by the threat actors.|
 |brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh|These hosts are most likely infected by malware or compromised and are trying to break into other computers or services.|
@@ -79,7 +78,6 @@ This category of information refers to observations, which detail a technical vu
 --- | --- | --- |
 |ddos amplifier|These observations refer to misconfigured network services, which are vulnerable to DDoS reflection often over UDP.|Even if this vulnerability does not directly affect the confidentiality or integrity of the host in question, the resource or upstream bandwidth consumption can affect availability.|
 |vulnerable service|These observations refer to specific technical vulnerabilities present on a network service, which have or will be assigned a CVE by MITRE.|The CVE assigned to the vulnerability affect the host in various ways. The CIA triad and CVSS score are metrics, which detail severity of the vulnerability. Remote code execution is a good example of a severe impact.| 
-|cve|This type of observation identifies a product and a version of software, which contains a specific vulnerability.|These observations do not detail the affected host or service, rather than they can be used to identify such services especially if they are not directly exposed to the Internet or are client side vulnerabilities.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Exposure
@@ -99,9 +97,11 @@ Plausible harm denotes a category of observations which attribute a perceived ha
 
 |attribute|description|impact|
 --- | --- | --- |
+|artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These observations do not directly reference a compromise, rather can be used for monitoring and detection.|
 |attribution|Observations which can be attributed to malicious activity without a specific functional category such as a command and control server.|These indicators attribute infrastructure to potential actors, but cannot be directly used for victim notification, since the nature of the compromise is often unspecified.
 |blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely. This type should only be used if the typing fits the definition of a reputation list, but an event specific denomination is not possible for one reason or another.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
 |compromised account|A user account which has been compromised byt a third party.|These compromised user accounts may lead to further unauthorized use through password re-use even if the compromised service is not part of the victim infrastructure.|
+|cve|This type of observation identifies a product and a version of software, which contains a specific vulnerability.|These observations do not detail the affected host or service, rather than they can be used to identify such services especially if they are not directly exposed to the Internet or are client side vulnerabilities.|
 |ddos target|This observation type refers to an intended target of a DDoS attack, i.e. the domain name or IP address that is being subjected to DDoS traffic.|This host or service may be unavailable because of the DDoS attack.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
