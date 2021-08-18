@@ -2,14 +2,14 @@
 
 # Data Harmonization Ontology
 
-The purpose of this document is to describe a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different audience in mind, namely:
+The purpose of this document is to describe a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different intended audience in mind, namely:
 
  * **suspected compromise** for incident response
  * **known vulnerabilities** for vulnerability management
  * **public exposure** for configuration management
  * **potential threats** for threat analysis or risk assessment.
 
-Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in the operation of an early warning service that disseminates this information or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding of how we have approach data harmonization from the victim notification perspective.
+Since you are reading this document, you are either working for a party that collects and shares information on observations related to the categories detailed above, you are involved in the operation of an early warning service that disseminates this information to your stakeholders or you are a recipient of this type of information attributed to you. Regardless of your role, you will most likely benefit from perusing this document and gaining a better understanding of how we have approach data harmonization from the victim notification perspective.
 
 ## What is data harmonization?
 
@@ -28,13 +28,13 @@ It is important to be able to classify, prioritize and report relevant actionabl
 |attribute|description|
 --- | --- |
 |category|A functional category describes the intended audience for a given observation. It in itself is a collection of functional types with a specific use for the given audience, e.g. **suspected compromise** must contain observations which merit incident response.|
-|type|The **type** attribute is one of the most crucial pieces of information for any given threat observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
+|type|The **type** attribute is one of the most crucial pieces of information for any given observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
 
 To keep communication clear and tailored to the needs of the intended audience, we retain a 1:1 mapping between a category and a type, i.e. only the type **test** is a member of multiple categories. All the other types belong only to a single category.
 
 ## Categories and Types
 
-As stated above, a functional category defines the intended audience. At present we define four distinct categories, each of which has a specific audience.
+As stated above, a functional category defines the intended audience. At present we define four distinct categories, each of which has a specific intended audience.
 
 |attribute|audience|description|
 --- | --- | --- |
@@ -47,13 +47,13 @@ Below, we detail each category in more detail, as well as enumerate the type val
 
 ### Suspected Compromise
 
-The traditional form of victim notification relates to observations which detail a network resource which is believed to be abused by a third party. A good example of this type of observation is a malware infected machine, which has reached out to a command and control server despite the security controls of the affected organization. Below, we enumerate the functional types which detail malice in a way that should instigate incident response activities in the affected organization immediately.
+The traditional form of victim notification relates to observations that detail a network resource which is believed to have already been compromised. A good example of this type of activity is a malware infected machine, which has been observed reached out to a command and control server despite the security controls of the affected organization. Below, we enumerate the functional types which detail malice in a way, which should immediately instigate incident response activities in the affected organization.
 
 |attribute|description|impact|
 --- | --- | --- |
 |backdoor|Backdoor observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
 |botnet drone|The most numerous type of abuse, as it refers to compromised computers calling out to a command and control mechanism.|These hosts are most likely infected by a piece of malware and controlled by the threat actors.|
-|brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh|These hosts are most likely infected by malware or compromised and are trying to break into other computers or services.|
+|brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are most likely infected by malware or compromised and are trying to break into other computers or services.|
 |c&c|A command and control server in charge of a given number of botnet drones.|This computer or service is controlling a botnet and functioning as part of the threat actor infrastructure.|
 |compromised server|This server or service has been compromised by a third party.|These hosts or services are under the threat actor control to do their bidding.|
 |ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not been necessarily compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
@@ -72,7 +72,7 @@ The traditional form of victim notification relates to observations which detail
 
 ### Known Vulnerabilities
 
-This category of information refers to observations, which detail a technical vulnerability present on a service. For early warning, it is important to denote the ip, vulnerability, protocol, service and port as well. For generic vulnerability management, the affected product and remediation information will be useful as well.
+This category of information refers to observations, which detail a technical vulnerability present in a service. For early warning, it is important to denote the ip, vulnerability, protocol, service and port as well. For generic vulnerability management, the affected product and remediation information will be useful as well.
 
 |attribute|description|impact|
 --- | --- | --- |
@@ -82,26 +82,26 @@ This category of information refers to observations, which detail a technical vu
 
 ### Public Exposure
 
-Exposure denotes observations which are useful in trying to minimize a network owner's attack surface. The observations can take place on the level of a network service or that of an open port and transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in remediation. Often an exposed service or port is remediated through a firewall rule or access control list, or configuration option and not by patching a specific vulnerability in the implementation.
+Public exposure denotes observations which are useful in trying to minimize a network owner's attack surface. The observations can take place on the level of a network service or that of an open port and a transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in remediation. Often an exposed service or port is remediated through a firewall rule or access control list, or configuration option and not by patching a specific vulnerability in the implementation. Consequently, all observations in this category relate to configuration management.
 
 |attribute|description|impact|
 --- | --- | --- |
 |exposed service|These observations relate to network services, which should not be directly exposed to the Internet.|The implementations of these types of service have not been designed and implemented with the needs of the Internet in mind and can often be trivially compromised. A good example of this type of a service is RDP.|
 |open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise. A good example of this type of a service is FTP.|
-|open port|These types of observations relate to a host which exposes a port to the Internet, but which doesn't specify the service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
+|open port|These types of observations relate to a hosts which exposes specific ports to the Internet, but the observations do not specify the specific service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Potential Threats
 
-Potential threats denotes a category of observations which attribute a perceived harm to an organization without specifying the threat in question on a level, which would directly possible to remediate by the affected organization. The attribution may refer to an asset without detailing the exact resource, such as a URL. It may be a resource that is blocked by a third party or it may be a service offered by a third party, whose users belong to the affected organization. In each case the actual remediation will require further analysis by the affected organization.
+Potential threats denote a category of observations which attribute a perceived harm to an organization without detailing the specific threat in a way that directly warrants incident response, vulnerability management or configuration management. In other words, threat analysis is needed to determine whether the observation is actionable and can be actioned in the context of the aforementioned processes.
 
 |attribute|description|impact|
 --- | --- | --- |
 |artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These observations do not directly reference a compromise, rather can be used for monitoring and detection.|
-|attribution|Observations which can be attributed to malicious activity without a specific functional category such as a command and control server.|These indicators attribute infrastructure to potential actors, but cannot be directly used for victim notification, since the nature of the compromise is often unspecified.
-|blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely. This type should only be used if the typing fits the definition of a reputation list, but an event specific denomination is not possible for one reason or another.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
-|compromised account|A user account which has been compromised byt a third party.|These compromised user accounts may lead to further unauthorized use through password re-use even if the compromised service is not part of the victim infrastructure.|
-|cve|This type of observation identifies a product and a version of software, which contains a specific vulnerability.|These observations do not detail the affected host or service, rather than they can be used to identify such services especially if they are not directly exposed to the Internet or are client side vulnerabilities.|
+|attribution|Observations that can be attributed to malicious activity which are not detailed enough to action on from the victim notification perspective.|These observations require further assessment or analysis.|
+|blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely. |Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
+|compromised account|A user account which has been compromised by a third party.|The compromised user accounts may lead to further unauthorized use through password re-use even if the compromised service is not part of the recipient's infrastructure.|
+|cve|This type of observation identifies a product and a version of software, which contains a specific vulnerability.|These observations do not detail the affected host or service, rather than they can be used to identify such services especially if they are not directly exposed to the Internet or refer to client side vulnerabilities.|
 |ddos target|This observation type refers to an intended target of a DDoS attack, i.e. the domain name or IP address that is being subjected to DDoS traffic.|This host or service may be unavailable because of the DDoS attack.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
