@@ -88,7 +88,7 @@ Public exposure denotes observations which are useful in trying to minimize a ne
 --- | --- | --- |
 |exposed service|These observations relate to network services, which should not be directly exposed to the Internet.|The implementations of these types of service have not been designed and implemented with the needs of the Internet in mind and can often be trivially compromised. A good example of this type of a service is RDP.|
 |open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise. A good example of this type of a service is FTP.|
-|open port|These types of observations relate to a hosts which exposes specific ports to the Internet, but the observations do not specify the specific service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
+|open port|These types of observations relate to hosts which expose specific ports to the Internet, but the observations do not specify the exact service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Potential Threats
