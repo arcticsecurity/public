@@ -2,7 +2,7 @@
 
 # Data Harmonization Ontology
 
-The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a different intended audience in mind, namely:
+The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a specific domain of expertise in mind, namely:
 
  * **suspected compromise** for incident response
  * **known vulnerabilities** for vulnerability management
@@ -27,16 +27,16 @@ It is important to be able to classify, prioritize and report relevant actionabl
 
 |attribute|description|
 --- | --- |
-|category|A functional category describes the intended audience for a given observation. It in itself is a collection of functional types with a specific use for the given audience, e.g. **suspected compromise** must contain observations which merit incident response.|
+|category|A functional category describes the domain of expertise needed to address a given observation. It in itself is a collection of functional types with a specific use for the given domain, e.g. **suspected compromise** must contain observations which merit incident response.|
 |type|The type attribute is one of the most crucial pieces of information for any given observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
 
-Please note that in order to keep communication clear and tailored to the needs of the intended audience, we retain a 1:1 mapping between a category and a type, i.e. only the type **test** is a member of multiple categories. All the other types belong to a single category.
+Please note that in order to keep communication clear and tailored to the needs of the intended domain, we retain a 1:1 mapping between a category and a type, i.e. only the type **test** is a member of multiple categories. All the other types belong to a single category.
 
 ## Categories and Types
 
-As stated above, a functional category defines the intended audience. At present we define four distinct categories, each of which has a specific intended audience.
+As stated above, a functional category defines an input for a specific domain of expertise. At present we define four distinct categories as follows:
 
-|attribute|audience|description|
+|attribute|domain|description|
 --- | --- | --- |
 |suspected compromise|incident response|This category of information details specific recipient assets, which have been observed by a third party to be compromised.|
 |known vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address them.|
@@ -93,7 +93,7 @@ Public exposure denotes observations which are useful in trying to minimize the 
 
 ### Potential Threats
 
-Potential threats denote a category of observations which attribute a perceived harm to an organization without detailing the specific threat in a way that directly warrants incident response, vulnerability management or configuration management. In other words, threat analysis or risk assessment is needed to determine whether the observation is actionable and can be actioned in the context of the remediation processes, such as incident response.
+Potential threats denote a category of observations which attribute a potential harm to an organization. The observations will need to be further validated by the recipient to see which domain of expertise can benefit from them if any.
 
 |attribute|description|impact|
 --- | --- | --- |
