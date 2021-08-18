@@ -2,7 +2,7 @@
 
 # Data Harmonization Ontology
 
-The purpose of this document is to describe a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of early warning. We pay special attention to categorize the information in a way that directly serves the needs of victim notification. We present four categories, which consist of explicit functional types, each with a different intended audience in mind, namely:
+The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a different intended audience in mind, namely:
 
  * **suspected compromise** for incident response
  * **known vulnerabilities** for vulnerability management
@@ -28,9 +28,9 @@ It is important to be able to classify, prioritize and report relevant actionabl
 |attribute|description|
 --- | --- |
 |category|A functional category describes the intended audience for a given observation. It in itself is a collection of functional types with a specific use for the given audience, e.g. **suspected compromise** must contain observations which merit incident response.|
-|type|The **type** attribute is one of the most crucial pieces of information for any given observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
+|type|The type attribute is one of the most crucial pieces of information for any given observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
 
-To keep communication clear and tailored to the needs of the intended audience, we retain a 1:1 mapping between a category and a type, i.e. only the type **test** is a member of multiple categories. All the other types belong only to a single category.
+Please note that in order to keep communication clear and tailored to the needs of the intended audience, we retain a 1:1 mapping between a category and a type, i.e. only the type **test** is a member of multiple categories. All the other types belong to a single category.
 
 ## Categories and Types
 
@@ -38,16 +38,16 @@ As stated above, a functional category defines the intended audience. At present
 
 |attribute|audience|description|
 --- | --- | --- |
-|suspected compromise|incident response|This category of information details a specific recipient assets, which have been observed by a third party to be compromised.|
-|known vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address it.|
+|suspected compromise|incident response|This category of information details specific recipient assets, which have been observed by a third party to be compromised.|
+|known vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address them.|
 |public exposure|configuration management|This category of information details services or ports which are publicly exposed to the Internet.|
 |potential threats|threat analysis or risk assessment|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
 
-Below, we detail each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
+Below, we explicate each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
 
 ### Suspected Compromise
 
-The traditional form of victim notification relates to observations that detail a network resource which is believed to have already been compromised. A good example of this type of activity is a malware infected machine, which has been observed reached out to a command and control server despite the security controls of the affected organization. Below, we enumerate the functional types which detail malice in a way, which should immediately instigate incident response activities in the affected organization.
+The traditional form of victim notification relates to observations that detail a network resource which is believed to have already been compromised. A good example of this type of activity is a malware infected machine, which has been observed to reach out to a command and control server despite the security controls of the affected organization. Below, we enumerate the functional types which detail malice in a way, which should immediately instigate incident response activities in the affected organization.
 
 |attribute|description|impact|
 --- | --- | --- |
@@ -82,18 +82,18 @@ This category of information refers to observations, which detail a technical vu
 
 ### Public Exposure
 
-Public exposure denotes observations which are useful in trying to minimize a network owner's attack surface. The observations can take place on the level of a network service or that of an open port and a transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in remediation. Often an exposed service or port is remediated through a firewall rule or access control list, or configuration option and not by patching a specific vulnerability in the implementation. Consequently, all observations in this category relate to configuration management.
+Public exposure denotes observations which are useful in trying to minimize the recipient organization's  attack surface. Observations can take place on the level of a network service or that of an open port and its transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in their remediation. Often an exposed service or port is remediated by changing a firewall rule, an access control list or configuration option and not through patching a specific vulnerability in the implementation. Consequently, all observations in this category serve to configuration management.
 
 |attribute|description|impact|
 --- | --- | --- |
-|exposed service|These observations relate to network services, which should not be directly exposed to the Internet.|The implementations of these types of service have not been designed and implemented with the needs of the Internet in mind and can often be trivially compromised. A good example of this type of a service is RDP.|
+|exposed service|These observations relate to network services, which should not be directly exposed to the Internet.|The implementations of these types of services have not been designed with the needs of the Internet in mind and can often be trivially compromised. A good example of this type of a service is RDP.|
 |open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise. A good example of this type of a service is FTP.|
 |open port|These types of observations relate to hosts which expose specific ports to the Internet, but the observations do not specify the exact service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Potential Threats
 
-Potential threats denote a category of observations which attribute a perceived harm to an organization without detailing the specific threat in a way that directly warrants incident response, vulnerability management or configuration management. In other words, threat analysis is needed to determine whether the observation is actionable and can be actioned in the context of the aforementioned processes.
+Potential threats denote a category of observations which attribute a perceived harm to an organization without detailing the specific threat in a way that directly warrants incident response, vulnerability management or configuration management. In other words, threat analysis or risk assessment is needed to determine whether the observation is actionable and can be actioned in the context of the remediation processes, such as incident response.
 
 |attribute|description|impact|
 --- | --- | --- |
