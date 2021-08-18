@@ -72,7 +72,7 @@ The traditional form of victim notification relates to observations that detail 
 
 ### Known Vulnerabilities
 
-This category of information refers to observations, which detail a technical vulnerability present in a service. For early warning, it is important to denote the ip, vulnerability, protocol, service and port as well. For generic vulnerability management, the affected product and remediation information will be useful as well.
+This category of information refers to observations, which detail a technical vulnerability present in a service. For early warning, it is important to denote the ip, vulnerability, protocol, service and port as well. For generic vulnerability management, the affected product and remediation information will also be useful.
 
 |attribute|description|impact|
 --- | --- | --- |
