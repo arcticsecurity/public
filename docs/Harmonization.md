@@ -39,7 +39,7 @@ As stated above, a functional category defines an input for a specific domain of
 |attribute|domain|description|
 --- | --- | --- |
 |suspected compromise|incident response|This category of information details specific recipient assets, which have been observed by a third party to be compromised.|
-|known vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address them.|
+|known vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are often enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address them.|
 |public exposure|configuration management|This category of information details services or ports which are publicly exposed to the Internet.|
 |potential threats|threat analysis or risk assessment|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
 
@@ -51,6 +51,7 @@ The traditional form of victim notification relates to observations that detail 
 
 |attribute|description|impact|
 --- | --- | --- |
+|alert|This type of observation refers to rule or identity based matches on a sensor device, which cannot directly be assigned a more specific functional type.|The host triggering these alerts should be triaged, taking into account the indicator which has triggered the alert and the constraints of the local environment.|
 |backdoor|Backdoor observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
 |botnet drone|The most numerous type of abuse, as it refers to compromised computers calling out to a command and control mechanism.|These hosts are most likely infected by a piece of malware and controlled by the threat actors.|
 |brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are most likely infected by malware or compromised and are trying to break into other computers or services.|
@@ -66,7 +67,6 @@ The traditional form of victim notification relates to observations that detail 
 |phishing|This type most often refers to a URL or domain name used to defraud the users of their credentials.|These URLs or domain names are served to potential victims to try to steal their credentials to a third party service. These hosts are often also compromised by threat actors.|
 |ransomware|This type refers to a specific type of compromised machine, where the computer has been hijacked for ransom by the criminals.|The disk resources of these hosts are encrypted by the criminals for ransom or sabotage. This may lead to the encryption of disk resources for an entire organization.|
 |scanner|This type refers to machines which are performing port or vulnerability scanning attempts in general.|These hosts are scanning for vulnerable services to enable threat actors to compromise them. The host doing the scanning are often compromised or infected as well.|
-|sensor alert|This type of observation refers to rule or identity based matches on a sensor device, which cannot directly be assigned a functional type.|The host triggering these alerts should be triaged, taking into account the indicator which has triggered the alert and the constraints of the local environment.|
 |spam infrastructure|This type refers to resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
