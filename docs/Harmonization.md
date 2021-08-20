@@ -254,9 +254,9 @@ Host-based artifacts play a role in incident handling, and having a means to rel
 
 As stated above, the basic premise of an ontology is to specify a core language which is able to communicate the relevant aspects of a topic in an effective manner. This leaves room for topic-specific lexemes outside the generic terminology; this is especially true in the context of reporting emerging trends, where a single source may start reporting on a topic and other follow suit.
 
-For these reasons, we occasionally leave out some lexemes from the ontology and bring in new ones which represent a generic topic. This approach does not detract from the ontology nor its communicative function, as the core attributes communicate the relevant aspects effectively. Topic- or provider-specific keys can thus be part of an observation name space.
+For these reasons, we occasionally leave out some lexemes from the ontology and bring in new ones which represent a generic topic. This approach does not detract from the ontology nor its communicative function, as the core attributes communicate the relevant aspects effectively. Topic- or provider-specific attributes can thus be part of an observation name space.
 
-It is thus important to avoid collision with the core ontology name space. In other words, topic- or provider-specific keys are new emerging attributes which may in time become part of the ontology if they are adopted to describe a facet of a generic topic.
+It is thus important to avoid collision with the core ontology name space. In other words, topic- or provider-specific attributes are new emerging attributes which may in time become part of the ontology if they are adopted to describe a facet of a generic topic.
 
 We have for example decided to use the "cc" attribute above as the authoritative country code denominator. Provider specific attributes are then prefixed with a provider name, e.g. "cymru cc" or "geoip cc".
 
