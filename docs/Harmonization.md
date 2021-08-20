@@ -204,7 +204,7 @@ We acknowledge IP geolocation is not an exact science, and our analysis has show
 
 |attribute|description|
 --- | --- |
-|cc|Each early warning service should define a logic how to assign a value for the cc key. You may decide to trust the opinion of a single source or apply logical operations on multiple sources. The country code is expressed as an ISO 3166 two-letter country code.|
+|cc|Each service provider should define a logic how to assign a value for the cc key. You may decide to trust the opinion of a single source or apply logical operations on multiple sources. The country code is expressed as an ISO 3166 two-letter country code.|
 |city|Some geolocation services refer to city-level geolocation.|
 |country|The country name derived from the ISO 3166 country code (assigned to cc above).|
 |latitude|Latitude coordinate derived from a geolocation service such as the MaxMind GeoIP database.|
