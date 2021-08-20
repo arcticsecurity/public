@@ -29,14 +29,14 @@ It is important to be able to classify, prioritize and report relevant actionabl
 
 |attribute|description|
 --- | --- |
-|category|A functional category describes the domain of expertise needed to address a given observation. It in itself, is a collection of functional types for a given domain of expertise, e.g. **suspected compromise** must contain observations which merit incident response.|
+|category|A category describes the domain of expertise needed to address a given observation. It in itself, is a collection of functional types for a given domain of expertise, e.g. **suspected compromise** must contain observations which merit incident response.|
 |type|The type attribute is one of the most crucial pieces of information for any given observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
 
 Please note that in order to keep communication clear and tailored to the needs of the intended domain, we retain a 1:1 mapping between a category and a type, i.e. only the type **test** is a member of multiple categories. All the other types belong to a single category.
 
 ## Categories and Types
 
-As stated above, a functional category defines an input for a specific domain of expertise. At present we define four distinct categories as follows:
+As stated above, a category defines an input for a specific domain of expertise. At present we define four distinct categories as follows:
 
 |attribute|domain|description|
 --- | --- | --- |
