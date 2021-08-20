@@ -15,7 +15,7 @@ Since you are reading this document, you are either working for a party that col
 
 ## What is data harmonization?
 
-The primary purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation which belongs to one of the **categories** outlined above.
+The primary purpose of this document is to help you better deal with the complexity that arises from processing threat data from heterogeneous sources and turning it into threat information that serves early warning. Data harmonization is a contract to always call the same things by the same name and not to call different things by the same name, viz. an IP address is always referred to as an **ip** and a functional **type** always represents a functional classification of an observation, which in turn belongs to one of the **categories** outlined above.
 
 With data harmonization covered briefly, we move on to defining an ontology. An ontology in our case is a higher level abstraction of a language, where each lexeme addresses a discernible characteristic of an observation. Our grammar is thus expressed as sets of key-value pairs, which are straightforward to serialize into flat dictionaries. We reference **observations** as collections of ontology driven key-value pairs. Please note that we use the term **key** to denote an observation schema and the term **attribute** to denote an ontology lexeme.
 
@@ -29,7 +29,7 @@ It is important to be able to classify, prioritize and report relevant actionabl
 
 |attribute|description|
 --- | --- |
-|category|A functional category describes the domain of expertise needed to address a given observation. It in itself is a collection of functional types with a specific use for the given domain, e.g. **suspected compromise** must contain observations which merit incident response.|
+|category|A functional category describes the domain of expertise needed to address a given observation. It in itself, is a collection of functional types for a given domain of expertise, e.g. **suspected compromise** must contain observations which merit incident response.|
 |type|The type attribute is one of the most crucial pieces of information for any given observation. The main idea of dynamic typing is to keep our ontology flexible, as we need to evolve with the evolving threat landscape presented through the data. Furthermore, the values set for the type attribute should be kept to a minimum to avoid a **type explosion**, which in turn dilutes the business value of dynamic typing.|
 
 Please note that in order to keep communication clear and tailored to the needs of the intended domain, we retain a 1:1 mapping between a category and a type, i.e. only the type **test** is a member of multiple categories. All the other types belong to a single category.
@@ -43,9 +43,9 @@ As stated above, a functional category defines an input for a specific domain of
 |suspected compromise|incident response|This category of information details specific recipient assets, which have been observed by a third party to be compromised.|
 |known vulnerabilities|vulnerability management|This category of information details technical vulnerabilities, which at present are often enumerated through Common Vulnerabilities and Exposures and which warrant a fix to be deployed to address them.|
 |public exposure|configuration management|This category of information details services or ports which are publicly exposed to the Internet.|
-|potential threats|threat analysis or risk assessment|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the risk without further analysis.|
+|potential threats|threat analysis or risk assessment|This category of information enumerates observations, which can cause harm to the affected organization, such as a service being blocked by third parties, but are not specific enough to attribute the harm without further analysis.|
 
-Below, we explicate each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help seeing the big picture as well.
+Below, we explicate each category in more detail, as well as enumerate the type values, which belong to a given category. The **type** values offer a data-backed taxonomy for classifying observations in a uniform manner. A concise yet functional classification system enables you to make informed decisions about the state of your network estate even in real-time. It is geared towards simplicity and automation, which in turn will help you better understand the big picture as well.
 
 ### Suspected Compromise
 
@@ -54,20 +54,20 @@ The traditional form of victim notification relates to observations that detail 
 |attribute|description|impact|
 --- | --- | --- |
 |alert|This type of observation refers to rule or identity based matches on a sensor device, which cannot directly be assigned a more specific functional type.|The host triggering these alerts should be triaged, taking into account the indicator which has triggered the alert and the constraints of the local environment.|
-|backdoor|Backdoor observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
-|botnet drone|The most numerous type of abuse, as it refers to compromised computers calling out to a command and control mechanism.|These hosts are most likely infected by a piece of malware and controlled by the threat actors.|
-|brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are most likely infected by malware or compromised and are trying to break into other computers or services.|
-|c&c|A command and control server in charge of a given number of botnet drones.|This computer or service is controlling a botnet and functioning as part of the threat actor infrastructure.|
-|compromised server|This server or service has been compromised by a third party.|These hosts or services are under the threat actor control to do their bidding.|
+|backdoor|These observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
+|botnet drone|These observations refer the most numerous type of suspected compromise, as they indicate compromised machines calling out to a command and control mechanism.|These hosts are likely to be infected by a piece of malware and controlled by threat actors.|
+|brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are likely to be infected by malware or compromised and are trying to break into other computers or services.|
+|c&c|A command and control server in charge of a given number of botnet drones.|This machine or service is observed to be controlling a botnet and functioning as part of threat actor infrastructure.|
+|compromised server|This server or service has been compromised by a third party.|These hosts or services are under threat actor control to do their bidding.|
 |ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not necessarily been compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
-|defacement|This type refers to hacktivism, which on a technical level is indicative of a compromised service.|This host is compromised by a third party and very often is used for other criminal activities as well.|
+|defacement|This type refers to hacktivism, which on a technical level is indicative suspected compromise.|This host is likely to have been compromised by a third party and very often is used for other criminal activities as well.|
 |dropzone|This type refers to a resource which is used to store stolen user data.|PII is often stored unlawfully on these hosts or services.|
 |exploitation|This type refers to attempted or successful exploitation of a vulnerable service.|A successful exploitation of a vulnerable service will lead to unauthorized use of this host or service.|
 |exploit url|An exploit or an exploit kit is often served through a malicious URL.|These URLs are used by the threat actors to spread malware. These hosts or services are often compromised to facilitate this activity.|
 |malware configuration|This is a resource which updates botnet drones with a new configurations.|These hosts or services function as part of threat actor infrastructure and are often compromised by threat actors.|
 |malware url|A URL is the most common resource with reference to malware binary distribution.|These hosts are serving pieces of malware to infect new machines and are usually compromised by the threat actors.|
 |phishing|This type most often refers to a URL or domain name used to defraud the users of their credentials.|These URLs or domain names are served to potential victims to try to steal their credentials to a third party service. These hosts are often also compromised by threat actors.|
-|ransomware|This type refers to a specific type of compromised machine, where the computer has been hijacked for ransom by the criminals.|The disk resources of these hosts are encrypted by the criminals for ransom or sabotage. This may lead to the encryption of disk resources for an entire organization.|
+|ransomware|This type refers to a specific type of compromised machine, where the computer has been hijacked for ransom by the criminals.|The storage resources of these hosts are encrypted by the criminals for ransom or sabotage. This in turn, may lead to encryption of storage resources for an entire organization.|
 |scanner|This type refers to machines which are performing port or vulnerability scanning attempts in general.|These hosts are scanning for vulnerable services to enable threat actors to compromise them. The host doing the scanning are often compromised or infected as well.|
 |spam infrastructure|This type refers to resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
@@ -84,7 +84,7 @@ This category of information refers to observations, which detail a technical vu
 
 ### Public Exposure
 
-Public exposure denotes observations which are useful in trying to minimize the recipient organization's  attack surface. Observations can take place on the level of a network service or that of an open port and its transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in their remediation. Often an exposed service or port is remediated by changing a firewall rule, an access control list or configuration option and not through patching a specific vulnerability in the implementation. Consequently, all observations in this category serve to configuration management.
+Public exposure denotes observations which are useful in trying to minimize the recipient organization's  attack surface. Observations can take place on the level of a network service or that of an open port and its transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in their remediation. Often an exposed service or port is remediated by changing a firewall rule, an access control list or configuration option and not through patching a specific vulnerability in the implementation. Consequently, all observations in this category serve configuration management.
 
 |attribute|description|impact|
 --- | --- | --- |
@@ -127,7 +127,7 @@ All time stamps should be normalized to UTC. If the source reports only a date, 
 
 |attribute|description|
 --- | --- |
-|observation time|The time an observation system processed the observation. This timestamp becomes especially important should you perform your own attribution on a host DNS name collected from a source. The mechanism to denote the attributed elements with reference to the source provided is detailed below under Reported Identity.|
+|observation time|The time an observation system processed the observation. This timestamp becomes especially important should you perform your own augmentation on a domain name collected from a source. The mechanism to denote the attributed elements with reference to the source provided is detailed below under Reported Identity.|
 |source time|Time reported by a source or feed. Some sources only report a date, which may be used here if there is no better observation. N.B. this time is the most important point of reference to pin down the observation by the end user recipient.|
 
 A good way to represent timestamps is this [ISO 8601 combined date-time representation](http://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations): ```YYYY-MM-DD HH:MM:SSZ```. We have omitted the T for readability, since:
@@ -136,7 +136,7 @@ A good way to represent timestamps is this [ISO 8601 combined date-time represen
 
 ## Identity
 
-The observation type defines the way the attributes of an observation need to be interpreted as a whole. For a botnet drone the attributes refer to the compromised machine, whereas for a command and control server it refers the server itself. For example, a port for a botnet drone is the source port of the connection to the c&c service.
+The observation type defines the way the attributes of an observation need to be interpreted as a whole. For a botnet drone, the attributes refer a compromised machine, whereas for a command and control server they refer the server itself. For example, a port for a botnet drone is the source port of the connection to the c&c service.
 
 |attribute|description|
 --- | --- |
@@ -223,7 +223,7 @@ The idea behind the additional attributes is to present generic observation meta
 |description|A concise free-form textual description of the observation, which should make it easier for the recipient to interpret it.|
 |http request|Some feeders report HTTP requests instead of URLs. The feeders may call them URLs but for the sake of interoperability with automation, such events should be placed under the "http request" key as there is no guarantee that the protocol scheme is HTTP.|
 |malware family|A malware family name, in lower case.|
-|missing data|If the harmonization is missing a known piece of data (such as an **ip** for example), the reference to this fact may be inserted here.|
+|missing data|If an observation is missing a known piece of data (such as an **ip** for example), the reference to this fact may be inserted here.|
 |protocol|The protocol attribute describes the application protocol on top of the transport which relates to the observation in question; that is, "protocol=ssh" for SSH brute-force attacks is more descriptive than "protocol=tcp". In this case the transport protocol should be referenced by that key, "transport protocol=tcp".|
 |service|In addition to describing a port and protocol for a given observation, one may need to describe the service which is listening on that port which is described by the observation, such as a publicly exposed vulnerability.|
 |severity|Often observations need to be prioritized and technical severity can be used to denote the urgency of the observation to the recipient, e.g. low, medium, high.|
@@ -233,7 +233,7 @@ The idea behind the additional attributes is to present generic observation meta
 |tracking id|Some sources and applications use an identifier to denote a context for an observation. This context may attribute a threat actor, case number or any other contextual information which is bundled with the observation.|
 |transport protocol|Some feeds report a protocol denoting the observed transport (for example, tcp, udp). This should be recorded appropriately should the protocol attribute denote the protocol of a vulnerable service for example.|
 |uri|For various technical reasons feeders often present URI references in their feeds instead of URLs. A URI reference is sometimes missing the scheme element, even if the authority and path elements are present as defined by the RFC3986. For brevity, we use the uri attribute to denote URIs and URI references.|
-|uuid|The purpose of the uuid is to denote a unique identifier, which uniquely identifies a single observation. For example, UUIDs generated with Python should generated using the uuid.uuid4() function, based on [RFC4122](http://tools.ietf.org/html/rfc4122). Note that "uuid" serves a different function than the tracking id.|
+|uuid|The purpose of a uuid is to denote an identifier, which uniquely identifies a single observation. For example, UUIDs generated with Python should generated using the uuid.uuid4() function, based on [RFC4122](http://tools.ietf.org/html/rfc4122). Note that "uuid" serves a different function than the tracking id.|
 |vulnerability|Sometimes it is necessary to provide a short description of a vulnerability reported by a source. This helps in correlating the vulnerabilities across sources. Vulnerability may be a CVE, name such as Heartbleed, or a weakness related to the attack surface such as firewall configuration.|
 
 ### Artifact Attributes
@@ -252,13 +252,13 @@ Host-based artifacts play a role in incident handling, and having a means to rel
 
 ## Topic- or Provider-Specific Attributes
 
-The basic premise of an ontology is to specify a core language which is able to communicate the relevant aspects of a topic in an effective manner. This leaves room for topic-specific lexemes outside the generic terminology; this is especially true in the context of reporting emerging trends, where a single source may start reporting on a topic and other follow suit. As part of the ontology we listed some of these keys previously as "dns version" or "notified by".
+As stated above, the basic premise of an ontology is to specify a core language which is able to communicate the relevant aspects of a topic in an effective manner. This leaves room for topic-specific lexemes outside the generic terminology; this is especially true in the context of reporting emerging trends, where a single source may start reporting on a topic and other follow suit.
 
-We have decided to leave them out of the ontology and only bring in terms which represent a generic topic. This approach does not detract from the ontology nor its communicative functions, as the core keys communicate the relevant aspects effectively. Topic- or provider-specific keys can thus be part of an event name space.
+For these reasons, we occasionally leave out some lexemes from the ontology and bring in new ones which represent a generic topic. This approach does not detract from the ontology nor its communicative function, as the core attributes communicate the relevant aspects effectively. Topic- or provider-specific keys can thus be part of an observation name space.
 
-The important thing is to avoid collision with the core ontology name space. In other words, topic- or provider-specific keys are new emerging attributes which may in time become part of the ontology if they are adopted to describe a facet of a generic topic. For example, we have decided to use the "cc" key above as the authoritative country code denominator.
+It is thus important to avoid collision with the core ontology name space. In other words, topic- or provider-specific keys are new emerging attributes which may in time become part of the ontology if they are adopted to describe a facet of a generic topic.
 
-For a given context there may be other provider specific interpretations which we have prefixed with the provider name; examples are "cymru cc" or "geoip cc", where the provider name is prepended to denote the source of this geolocation information.
+We have for example decided to use the "cc" attribute above as the authoritative country code denominator. Provider specific attributes are then prefixed with a provider name, e.g. "cymru cc" or "geoip cc".
 
 ## Harmonization Best Practices
 
