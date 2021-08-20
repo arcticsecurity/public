@@ -53,7 +53,7 @@ The traditional form of victim notification relates to observations that detail 
 
 |attribute|description|impact|
 --- | --- | --- |
-|alert|This type of observation refers to rule or identity based matches on a sensor device, which cannot directly be assigned a more specific functional type.|The host triggering these alerts should be triaged, taking into account the indicator which has triggered the alert and the constraints of the local environment.|
+|alert|This type of observation refers to detection rule or identity based matches, which cannot be attributed to a more specific functional type.|The system triggering these alerts should be triaged, taking into account the indicator which has triggered the alert and the constraints of the local environment.|
 |backdoor|These observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
 |botnet drone|These observations refer the most numerous type of suspected compromise, as they indicate compromised machines calling out to a command and control mechanism.|These hosts are likely to be infected by a piece of malware and controlled by threat actors.|
 |brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are likely to be infected by malware or compromised and are trying to break into other computers or services.|
@@ -61,7 +61,7 @@ The traditional form of victim notification relates to observations that detail 
 |compromised server|This server or service has been compromised by a third party.|These hosts or services are under threat actor control to do their bidding.|
 |ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not necessarily been compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
 |defacement|This type refers to hacktivism, which on a technical level is indicative suspected compromise.|This host is likely to have been compromised by a third party and very often is used for other criminal activities as well.|
-|dropzone|This type refers to a resource which is used to store stolen user data.|PII is often stored unlawfully on these hosts or services.|
+|dropzone|This type refers to a resource which is used to store stolen user data.|Personally identifyiable information is often stored unlawfully on these hosts or services.|
 |exploitation|This type refers to attempted or successful exploitation of a vulnerable service.|A successful exploitation of a vulnerable service will lead to unauthorized use of this host or service.|
 |exploit url|An exploit or an exploit kit is often served through a malicious URL.|These URLs are used by the threat actors to spread malware. These hosts or services are often compromised to facilitate this activity.|
 |malware configuration|This is a resource which updates botnet drones with a new configurations.|These hosts or services function as part of threat actor infrastructure and are often compromised by threat actors.|
