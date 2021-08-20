@@ -62,7 +62,7 @@ The traditional form of victim notification relates to observations that detail 
 |ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not necessarily been compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
 |defacement|This type refers to hacktivism, which on a technical level is indicative suspected compromise.|This host is likely to have been compromised by a third party and very often is used for other criminal activities as well.|
 |dropzone|This type refers to a resource which is used to store stolen user data.|Personally identifyiable information is often stored unlawfully on these hosts or services.|
-|exploitation|This type refers to attempted or successful exploitation of a vulnerable service.|A successful exploitation of a vulnerable service will lead to unauthorized use of this host or service.|
+|exploitation|This type refers to hosts attempting exploit a vulnerable service on a third party system.|These hosts are likely to be infected by malware or compromised and are trying to break into other computers or services.|
 |exploit url|An exploit or an exploit kit is often served through a malicious URL.|These URLs are used by the threat actors to spread malware. These hosts or services are often compromised to facilitate this activity.|
 |malware configuration|This is a resource which updates botnet drones with a new configurations.|These hosts or services function as part of threat actor infrastructure and are often compromised by threat actors.|
 |malware url|A URL is the most common resource with reference to malware binary distribution.|These hosts are serving pieces of malware to infect new machines and are usually compromised by the threat actors.|
@@ -95,16 +95,16 @@ Public exposure denotes observations which are useful in trying to minimize the 
 
 ### Potential Threats
 
-Potential threats denote a category of observations which attribute a potential harm to an organization. The observations will need to be further validated by the recipient to see which domain of expertise can benefit from them if any.
+Potential threats denote a category of observations which attribute a potential harm to an organization. The observations will need to be further validated by the recipient to see which domain of expertise can benefit from the analysis result, if any.
 
 |attribute|description|impact|
 --- | --- | --- |
 |artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These observations do not directly reference a compromise, rather can be used for monitoring and detection.|
-|attribution|Observations that can be attributed to malicious activity which are not detailed enough to action on from the victim notification perspective.|These observations require further assessment or analysis.|
-|blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely. |Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
-|compromised account|A user account which has been compromised by a third party.|The compromised user accounts may lead to further unauthorized use through password re-use even if the compromised service is not part of the recipient's infrastructure.|
+|attribution|Observations that can be attributed to malicious activity, which are not detailed enough to action on, from the victim notification perspective.|These observations require further assessment or analysis.|
+|blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
+|compromised account|Leaked user credentials, which have been taken from a compromised online service.|The compromised credentials may lead to further unauthorized use through password re-use even if the compromised service is not part of the report recipient's infrastructure.|
 |cve|This type of observation identifies a product and a version of software, which contains a specific vulnerability.|These observations do not detail the affected host or service, rather than they can be used to identify such services especially if they are not directly exposed to the Internet or refer to client side vulnerabilities.|
-|ddos target|This observation type refers to an intended target of a DDoS attack, i.e. the domain name or IP address that is being subjected to DDoS traffic.|This host or service may be unavailable because of the DDoS attack.|
+|ddos target|This observation type refers to an intended target of a DDoS attack.|A host or service has been subjected to DDoS traffic, which may have impacted operations.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 # Core Attributes
