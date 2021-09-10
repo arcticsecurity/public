@@ -69,7 +69,7 @@ The traditional form of victim notification relates to observations that detail 
 |phishing|This observation type most often refers to a URL or domain name used to defraud the users of their credentials.|These URLs or domain names are served to potential victims to try to steal their credentials to a third party service. These hosts are often also compromised by threat actors.|
 |ransomware|This observation type refers to a specific type of suspected compromise, where the host has been hijacked for ransom by the criminals.|The storage resources of these hosts are encrypted by the criminals for ransom or sabotage. This in turn, may lead to encryption of storage resources for an entire organization.|
 |scanner|This observation type refers to machines which are performing port or vulnerability scanning attempts in general.|These hosts are scanning for vulnerable services to enable threat actors to compromise them. The host doing the scanning are often compromised or infected as well.|
-|spam infrastructure|This observations detail resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
+|spam infrastructure|These observations detail resources which make up a spammer's infrastructure, be it a harvester, dictionary attacker, URL, spam etc.|These hosts will most likely be blocked because they are participating in spamming activities.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Known Vulnerabilities
