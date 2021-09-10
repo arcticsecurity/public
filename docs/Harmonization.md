@@ -2,7 +2,7 @@
 
 # Data Harmonization Ontology
 
-> release date: 2021-08-20
+> release date: FixMe
 
 The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a specific domain of expertise in mind, namely:
 
@@ -56,7 +56,7 @@ The traditional form of victim notification relates to observations that detail 
 |alert|This type of observation refers to detection rule or identity based matches, which cannot be attributed to a more specific functional type.|The system triggering these alerts should be triaged, taking into account the indicator which has triggered the alert and the constraints of the local environment.|
 |backdoor|These observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
 |botnet drone|This type of observation details hosts which have been observed to call out to a command and control server.|These hosts are likely to have been infected by a piece of malware and are controlled by threat actors.|
-|brute-force|A machine which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are likely to be infected by malware or compromised and are trying to break into other computers or services.|
+|brute-force|A host which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are likely to be infected by malware or compromised and are trying to break into other computers or services.|
 |c&c|These observations detail hosts, which are controlling malware infected machines, a.k.a. botnet drones.|Threat actors use these hosts to command their botnets and often the host itself has been compromised as well.|
 |compromised server|This type of observation details a server or service has been compromised by a third party.|These hosts or services are under threat actor control to do their bidding.|
 |ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not necessarily been compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
