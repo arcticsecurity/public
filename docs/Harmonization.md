@@ -55,7 +55,6 @@ The traditional form of victim notification relates to observations that detail 
 --- | --- | --- |
 |alert|This type of observation refers to detection rule or identity based matches, which cannot be attributed to a more specific functional type.|The system triggering these alerts should be triaged, taking into account the indicator which has triggered the alert and the constraints of the local environment.|
 |backdoor|These observations refer to hosts which have been compromised and/or backdoored by a third party.|Threat actors may use this functionality to gain remote access to the machine or service.|
-|botnet drone|This type of observation details hosts which have been observed to call out to a command and control server.|These hosts are likely to have been infected by a piece of malware and are controlled by threat actors.|
 |brute-force|A host which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are likely to be infected by malware or compromised and are trying to break into other computers or services.|
 |c&c|These observations detail hosts, which are controlling malware infected machines, a.k.a. botnet drones.|Threat actors use these hosts to command their botnets and often the host itself has been compromised as well.|
 |compromised server|This type of observation details a server or service has been compromised by a third party.|These hosts or services are under threat actor control to do their bidding.|
@@ -64,7 +63,8 @@ The traditional form of victim notification relates to observations that detail 
 |dropzone|This type of observation refers to a resource which is used to store stolen user data.|Personally identifiable information is often stored unlawfully on these hosts or services.|
 |exploitation|This type of observation refers to hosts attempting to exploit a vulnerable service on a third party system.|These hosts are likely to have been compromised and are trying to break into other hosts or services.|
 |exploit url|This type of observation details an exploit kit, which served through a malicious URL.|These URLs are used by the threat actors as a mechanism to break into vulnerable machines.| 
-|malware configuration|These observations point to resources which update botnet drones with new configurations.|These hosts or services function as part of threat actor infrastructure and are often compromised by threat actors.|
+|malware configuration|These observations point to resources which update malware infected machines with new configurations.|These hosts or services function as part of threat actor infrastructure and are often compromised by threat actors.|
+|malware infection|This type of observation details hosts which have been observed to call out to a command and control server.|These hosts are likely to have been infected by a piece of malware and are controlled by threat actors.|
 |malware url|An observation referencing a malware URL is the most common resource associated with malware distribution.|These hosts are serving pieces of malware to infect new machines and are often compromised by threat actors.|
 |phishing|This observation type most often refers to a URL or domain name used to defraud the users of their credentials.|These URLs or domain names are served to potential victims to try to steal their credentials to a third party service. These hosts are often also compromised by threat actors.|
 |ransomware|This observation type refers to a specific type of suspected compromise, where the host has been hijacked for ransom by the criminals.|The storage resources of these hosts are encrypted by the criminals for ransom or sabotage. This in turn, may lead to encryption of storage resources for an entire organization.|
@@ -137,7 +137,7 @@ A good way to represent timestamps is this [ISO 8601 combined date-time represen
 
 ## Identity
 
-The observation type defines the way the attributes of an observation need to be interpreted as a whole. For a botnet drone, the attributes refer to a compromised client machine, whereas for a command and control server they refer to the server. For example, a port for a botnet drone is the source port of the connection to the c&c service.
+The observation type defines the way the attributes of an observation need to be interpreted as a whole. For a malware infection, the attributes refer to a compromised client machine, whereas for a command and control server they refer to the server. For example, a port for a malware infection is the source port of the connection to the c&c service.
 
 |attribute|description|
 --- | --- |
@@ -168,7 +168,7 @@ Source identity attributes should be used to complement the observation about a 
 
 ### Destination Identity
 
-As stated above, the meaning of each observation needs to be interpreted with reference to the observation type. In the context of a botnet drone, for example, a destination IP and port usually denote the command and control server. I.e. the port attribute in those cases should not be referred to as the source port, rather than just *port*. For a scanner observation, the IP and port will be the source IP and port of the connection and the destination IP and port will denote the scanned target.
+As stated above, the meaning of each observation needs to be interpreted with reference to the observation type. For example, in the context of a malware infection, a destination IP and port usually denote the command and control server. I.e. the port attribute in those cases should not be referred to as the source port, rather than just *port*. For a scanner observation, the IP and port will be the source IP and port of the connection and the destination IP and port will denote the scanned target.
 
 |attribute|description|
 --- | --- |
