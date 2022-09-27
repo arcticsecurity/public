@@ -2,7 +2,7 @@
 
 # Data Harmonization Ontology
 
-> release date: FixMe
+> release date: 2021-08-20
 
 The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a specific domain of expertise in mind, namely:
 
@@ -102,6 +102,7 @@ Potential threats denote a category of observations which attribute a potential 
 |artifact|Artifacts refer to host-based indicators, such as checksums, file paths or detection rules.|These observations do not directly reference a compromise, rather can be used for monitoring and detection.|
 |attribution|Observations that can be attributed to malicious activity, which are not detailed enough to action on, from the victim notification perspective.|These observations require further assessment or analysis.|
 |blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
+|breached data|Observations on entire data dumps that often reside on the dark web and can be associated with an organization.|The breached data dump is a sign of suspected compromise, but further analysis is needed to ascertain where the breach has taken place and who is affected by it.|
 |compromised account|Observations on leaked user credentials, which have been taken from a compromised online service.|The compromised credentials may lead to further unauthorized use through password re-use even if the compromised service is not part of the report recipient's infrastructure.|
 |cve|This type of observation identifies a product and a version of software, which contains a specific vulnerability.|These observations do not detail the affected host or service, rather than they can be used to identify such services especially if they are not directly exposed to the Internet or refer to client side vulnerabilities.|
 |ddos target|This observation type refers to an intended target of a DDoS attack.|A host or service has been subjected to DDoS traffic, which may have impacted operations.|
@@ -227,7 +228,6 @@ The idea behind the additional attributes is to present generic observation meta
 |protocol|The protocol attribute describes the application protocol on top of the transport which relates to the observation in question; that is, "protocol=ssh" for SSH brute-force attacks is more descriptive than "protocol=tcp". In this case the transport protocol should be referenced by that key, "transport protocol=tcp".|
 |service|In addition to describing a port and protocol for a given observation, one may need to describe the service which is listening on that port which is described by the observation, such as a publicly exposed vulnerability.|
 |severity|Often observations need to be prioritized and technical severity can be used to denote the urgency of the observation to the recipient, e.g. low, medium, high.|
-|source|Aggregated feeds use observations not obtained directly by the feeder. Some aggregated feeds report a source of this external information. This key can be used to denote those external feeder entities, such as in the case of reputation list aggregation. N.B. the source is external to the feeder or their feed offering.|
 |status|Observed status of a network resource such as a phishing URL, dropzone, command and control server; for example, online, offline.|
 |target|Some sources such as phishing feeds designate the target of a phishing campaign.|
 |tracking id|Some sources and applications use an identifier to denote a context for an observation. This context may attribute a threat actor, case number or any other contextual information which is bundled with the observation.|
