@@ -103,8 +103,8 @@ Potential threats denote a category of observations which attribute a potential 
 |attribution|Observations that can be attributed to malicious activity, which are not detailed enough to action on, from the victim notification perspective.|These observations require further assessment or analysis.|
 |blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
 |breached data|Observations of data dumps which often reside on the dark web and can be associated with an organization.|The data dump is a sign of suspected compromise, but further analysis is needed to ascertain where the data breach has taken place and who is affected by it.|
-|compromised account|Observations on leaked user credentials, which have been taken from a compromised online service.|In addition to posing a risk to the breached service, other services used by the same user are at risk due to the common practice of password re-use.|
-|cve|These observations help identify specific versions of software or software components which are vulnerable.|These obervations lack context of which systems or services are affected by the vulnerability. They can be, however, used to identify attack surface which is not directly exposed to the Internet with the help of a software inventory.|
+|compromised account|Observations on leaked user credentials, which have been taken from a compromised online service.|In addition to posing a risk to the breached service, other services used by the same user are at risk due to the common practice of password reuse.|
+|cve|These observations help identify specific versions of software or software components which are vulnerable.|These observations lack context of which systems or services are affected by the vulnerability. They can be, however, used to identify attack surface, which is not directly exposed to the Internet (with the help of a software inventory for example).|
 |ddos target|This observation type refers to an intended target of a DDoS attack.|A host or service has been subjected to DDoS traffic, which may have impacted operations.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
@@ -256,7 +256,7 @@ As stated above, the basic premise of an ontology is to specify a core language 
 
 For these reasons, we occasionally leave out some lexemes from the ontology and bring in new ones which represent a generic topic. This approach does not detract from the ontology nor its communicative function, as the core attributes communicate the relevant aspects effectively. Topic- or provider-specific attributes can thus be part of an observation namespace.
 
-It is thus important to avoid collision with the core ontology name space. In other words, topic- or provider-specific attributes are new emerging attributes which may in time become part of the ontology if they are adopted to describe a facet of a generic topic.
+It is thus important to avoid collision with the core ontology namespace. In other words, topic- or provider-specific attributes are new emerging attributes which may in time become part of the ontology if they are adopted to describe a facet of a generic topic.
 
 We have for example decided to use the "cc" attribute above as the authoritative country code denominator. Provider specific attributes are then prefixed with a provider name, e.g. "cymru cc" or "geoip cc".
 
@@ -266,7 +266,7 @@ There are many things you have to take into account when harmonizing heterogeneo
 
 We recognize that for traditional database schemas this approach may be challenging, but converting spaces into underscores in the attribute names should not be an impossible undertaking. The idea of the ontology, after all, is to be a human readable abstraction.
 
-On the note of human readability, we endeavour to strike a balance between attribute name length and readability. For technical people, "src port" may be natural, but "source port" is more readable; on the other hand, "reverse dns" instead of "reverse domain name system name" is more practical. The important point is to have a clear naming convention and adhere to it: "destination domain name" is unwieldy, but "dst domain name" or "dst dns" would not use the same rationale as "domain name".
+On the note of human readability, we endeavor to strike a balance between attribute name length and readability. For technical people, "src port" may be natural, but "source port" is more readable; on the other hand, "reverse dns" instead of "reverse domain name system name" is more practical. The important point is to have a clear naming convention and adhere to it: "destination domain name" is unwieldy, but "dst domain name" or "dst dns" would not use the same rationale as "domain name".
 
 In summary, the underlying idea of this ontology is to provide a good foundation on which to build, whether the use case is filtering, aggregation, reporting or alerting. Not having to deal with, say, 32 names for an IP address makes life a lot easier at the end of the pipeline.
 
