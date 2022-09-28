@@ -2,7 +2,7 @@
 
 # Data Harmonization Ontology
 
-> release date: 2021-09-28
+> release date: 2022-09-28
 
 The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a specific domain of expertise in mind, namely:
 
