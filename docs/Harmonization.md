@@ -79,7 +79,7 @@ This category of information refers to observations, which detail a technical vu
 |attribute|description|impact|
 --- | --- | --- |
 |cve|These observations help identify specific versions of software or software components which are vulnerable.|These observations lack context of which systems or services are affected by the vulnerability. They can be, however, used to identify attack surface, which is not directly exposed to the Internet (with the help of a software inventory for example).|
-|vulnerable service|These observations refer to specific technical vulnerabilities present on a network service, which have been assigned a CVE by MITRE.|The CVE assigned to the vulnerability affects the host in various ways. The CIA triad and CVSS score are metrics, which detail the severity of the vulnerability. Remote code execution is a good example of a severe impact.| 
+|vulnerable service|These observations refer to specific technical vulnerabilities present on a network service, which usually have been assigned a CVE by MITRE.|The CVE assigned to the vulnerability affects the host in various ways. The CIA triad and CVSS score are metrics, which detail the severity of the vulnerability. Remote code execution is a good example of a severe impact.| 
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Public Exposure
