@@ -2,7 +2,7 @@
 
 # Data Harmonization Ontology
 
-> release date: 2022-09-28
+> release date: 2022-10-05
 
 The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a specific domain of expertise in mind, namely:
 
@@ -58,7 +58,8 @@ The traditional form of victim notification relates to observations that detail 
 |brute-force|A host which has been observed to perform brute-force attacks over a given application protocol, e.g. ssh.|These hosts are likely to be infected by malware or compromised and are trying to break into other computers or services.|
 |c&c|These observations detail hosts, which are controlling malware infected machines, a.k.a. botnet drones.|Threat actors use these hosts to command their botnets and often the host itself has been compromised as well.|
 |compromised server|This type of observation details a server or service has been compromised by a third party.|These hosts or services are under threat actor control to do their bidding.|
-|ddos infrastructure|This type refers to various parts of DDoS botnet infrastructure.|These hosts or services have most likely facilitated DDoS attacks even if they have not necessarily been compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party. This in turn may consume the upstream bandwidth of the host during an attack.|
+|ddos bot|These hosts have been observed to participate in DDoS attacks and are likely to have been compromised.|These hosts are likely to have been infected by a piece of malware and are controlled by threat actors.|
+|ddos reflector|These hosts or services have been observed to participate in DDoS attacks even if they have not necessarily been compromised. They may for example offer a UDP-based vulnerable service, which has been spoofed to facilitate a reflected attack against a third party.|Participating in the DDoS attack may consume your upstream bandwidth during the attack or the uplink may become unavailable due to various DDoS countermeasures.|
 |defacement|This type of observation refers to digital vandalism, which on a technical level is indicative of suspected compromise.|This host is likely to have been compromised by a third party and very often is used for other criminal activities as well.|
 |dropzone|This type of observation refers to a resource which is used to store stolen user data.|Personally identifiable information is often stored unlawfully on these hosts or services.|
 |exploitation|This type of observation refers to hosts attempting to exploit a vulnerable service on a third party system.|These hosts are likely to have been compromised and are trying to break into other hosts or services.|
@@ -78,8 +79,8 @@ This category of information refers to observations, which detail a technical vu
 
 |attribute|description|impact|
 --- | --- | --- |
-|ddos amplifier|These observations refer to misconfigured network services, which are vulnerable to DDoS reflection often over UDP.|Even if this vulnerability does not directly affect the confidentiality or integrity of the host in question, the resource or upstream bandwidth consumption can affect availability.|
-|vulnerable service|These observations refer to specific technical vulnerabilities present on a network service, which have been assigned a CVE by MITRE.|The CVE assigned to the vulnerability affects the host in various ways. The CIA triad and CVSS score are metrics, which detail the severity of the vulnerability. Remote code execution is a good example of a severe impact.| 
+|cve|These observations help identify specific versions of software or hardware components which are vulnerable.|These observations lack context of which systems or services are affected by the vulnerability. They can be, however, used to identify attack surface, which is not directly exposed to the Internet (with the help of a software inventory for example).|
+|vulnerable service|These observations refer to specific technical vulnerabilities present on a network service, which usually have been assigned a CVE by MITRE.|The CVE assigned to the vulnerability affects the host in various ways. The CIA triad and CVSS score are metrics, which detail the severity of the vulnerability. Remote code execution is a good example of a severe impact.| 
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
 ### Public Exposure
@@ -88,6 +89,7 @@ Public exposure denotes observations which are useful in trying to minimize the 
 
 |attribute|description|impact|
 --- | --- | --- |
+|ddos potential|These observations refer to misconfigured network services, which are vulnerable to DDoS reflection often over UDP.|Even if this vulnerability does not directly affect the confidentiality or integrity of the host in question, the resource or upstream bandwidth consumption can affect availability.|
 |exposed service|These observations relate to network services, which should not be directly exposed to the Internet.|The implementations of these types of services have not been designed with the needs of the Internet in mind and can often be trivially compromised. A good example of this type of service is RDP.|
 |open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise. A good example of this type of service is FTP.|
 |open port|These types of observations relate to hosts which expose specific ports to the Internet, but the observations do not specify the exact service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
@@ -104,7 +106,6 @@ Potential threats denote a category of observations which attribute a potential 
 |blocked resource|Some sources provide reputation lists which clearly refer to abusive behavior (such as spamming) but fail to denote the exact reason why a given identity has been listed. The justification may be anecdotal or missing entirely.|Services appearing on these lists will have difficulty to operate normally, as their service specific communication will be blocked by third parties.|
 |breached data|Observations of data dumps which often reside on the dark web and can be associated with an organization.|The data dump is a sign of suspected compromise, but further analysis is needed to ascertain where the data breach has taken place and who is affected by it.|
 |compromised account|Observations on leaked user credentials, which have been taken from a compromised online service.|In addition to posing a risk to the breached service, other services used by the same user are at risk due to the common practice of password reuse.|
-|cve|These observations help identify specific versions of software or software components which are vulnerable.|These observations lack context of which systems or services are affected by the vulnerability. They can be, however, used to identify attack surface, which is not directly exposed to the Internet (with the help of a software inventory for example).|
 |ddos target|This observation type refers to an intended target of a DDoS attack.|A host or service has been subjected to DDoS traffic, which may have impacted operations.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
 
