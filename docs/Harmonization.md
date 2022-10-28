@@ -93,8 +93,8 @@ Public exposure denotes observations which are useful in trying to minimize the 
 |exposed service|These observations relate to network services, which should not be directly exposed to the Internet.|The implementations of these types of services have not been designed with the needs of the Internet in mind and can often be trivially compromised. A good example of this type of service is RDP.|
 |open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise. A good example of this type of service is FTP.|
 |open port|These types of observations relate to hosts which expose specific ports to the Internet, but the observations do not specify the exact service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
-|weak encyption|fixme|Incorrect uses of encryption algorithms may result in sensitive data exposure, key leakage, broken authentication, insecure session, and spoofing attacks. There are some encryption or hash algorithms known to be weak and are not suggested for use.
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
+|weak encryption|These types of observations relate to network services which expose a specific weakness in encryption.|According to OWASP, incorrect uses of encryption algorithms may result in sensitive data exposure, key leakage, broken authentication, insecure session, and spoofing attacks.|
 
 ### Potential Threats
 
