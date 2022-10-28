@@ -85,7 +85,7 @@ This category of information refers to observations, which detail a technical vu
 
 ### Public Exposure
 
-Public exposure denotes observations which are useful in trying to minimize the recipient organization's  attack surface. Observations can take place on the level of a network service or that of an open port and its transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in their remediation. Often an exposed service or port is remediated by changing a firewall rule, an access control list or configuration option and not through patching a specific vulnerability in the implementation. Consequently, all observations in this category serve configuration management.
+Public exposure denotes observations which are useful in trying to minimize the recipient organization's attack surface. Observations can take place on the level of a network service or that of an open port and its transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in their remediation. Often an exposed service or port is remediated by changing a firewall rule, an access control list or configuration option and not through patching a specific vulnerability in the implementation. Consequently, all observations in this category serve configuration management.
 
 |attribute|description|impact|
 --- | --- | --- |
