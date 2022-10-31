@@ -2,7 +2,7 @@
 
 # Data Harmonization Ontology
 
-> release date: 2022-10-05
+> release date: 2022-10-31
 
 The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a specific domain of expertise in mind, namely:
 
@@ -85,7 +85,7 @@ This category of information refers to observations, which detail a technical vu
 
 ### Public Exposure
 
-Public exposure denotes observations which are useful in trying to minimize the recipient organization's  attack surface. Observations can take place on the level of a network service or that of an open port and its transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in their remediation. Often an exposed service or port is remediated by changing a firewall rule, an access control list or configuration option and not through patching a specific vulnerability in the implementation. Consequently, all observations in this category serve configuration management.
+Public exposure denotes observations which are useful in trying to minimize the recipient organization's attack surface. Observations can take place on the level of a network service or that of an open port and its transport protocol. Exposed services are akin to vulnerabilities, but the major difference lies in their remediation. Often an exposed service or port is remediated by changing a firewall rule, an access control list or configuration option and not through patching a specific vulnerability in the implementation. Consequently, all observations in this category serve configuration management.
 
 |attribute|description|impact|
 --- | --- | --- |
@@ -94,6 +94,7 @@ Public exposure denotes observations which are useful in trying to minimize the 
 |open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise. A good example of this type of service is FTP.|
 |open port|These types of observations relate to hosts which expose specific ports to the Internet, but the observations do not specify the exact service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
 |test|Used for testing purposes.|These observations can be used to test an early warning service for example, without impacting the functionality of the service.|
+|weak encryption|These types of observations relate to network services which expose a specific weakness in encryption.|According to OWASP, incorrect uses of encryption may result in sensitive data exposure, key leakage, broken authentication, insecure session, and spoofing attacks.|
 
 ### Potential Threats
 
@@ -138,7 +139,7 @@ A good way to represent timestamps is this [ISO 8601 combined date-time represen
 
 ## Identity
 
-The observation **type** defines the way the attributes of an observation need to be interpreted as a whole. For a malware infection, the attributes most likely refer to a compromised end-user machine, whereas for a command and control server they refer to a server resource which is used by the criminals to control a botner. For example, a **port** for a malware infection observation is the source port of the malware beacon to the c&c server.
+The observation **type** defines the way the attributes of an observation need to be interpreted as a whole. For a malware infection, the attributes most likely refer to a compromised end-user machine, whereas for a command and control server they refer to a server resource which is used by the criminals to control a botnet. For example, a **port** for a malware infection observation is the source port of the malware beacon to the c&c server.
 
 |attribute|description|
 --- | --- |
@@ -235,7 +236,8 @@ The idea behind the additional attributes is to present generic observation meta
 |transport protocol|Some feeds report a protocol denoting the observed transport (for example, tcp, udp). This should be recorded appropriately should the protocol attribute denote the protocol of a vulnerable service for example.|
 |uri|For various technical reasons feeders often present URI references in their feeds instead of URLs. A URI reference is sometimes missing the scheme element, even if the authority and path elements are present as defined by the RFC3986. For brevity, we use the uri attribute to denote URIs and URI references.|
 |uuid|The purpose of a uuid is to denote an identifier, which uniquely identifies a single observation. For example, UUIDs generated with Python should be generated using the uuid.uuid4() function, based on [RFC4122](http://tools.ietf.org/html/rfc4122). Note that "uuid" serves a different function than the tracking id.|
-|vulnerability|Sometimes it is necessary to provide a short description of a vulnerability reported by a source. This helps in correlating the vulnerabilities across sources. Vulnerability may be a CVE, name such as Heartbleed, or a weakness related to the attack surface such as firewall configuration.|
+|vulnerability|Sometimes it is necessary to provide an identifier for a vulnerability reported by a source. This helps in correlating the vulnerabilities across sources. A vulnerability may be a CVE assigned by MITRE or a name such as Heartbleed.|
+|weakness|Sometimes it is necessary to provide an identifier for a weakness reported by a source. This helps in correlating the weaknesses across sources. A weakness may relate to flaws in protocols, algorithms, implementations or deployments, e.g. SSLv2, MD5, expired x509 certificate or RSA key length.|
 
 ### Artifact Attributes
 
