@@ -237,7 +237,7 @@ The idea behind the additional attributes is to present generic observation meta
 |uri|For various technical reasons feeders often present URI references in their feeds instead of URLs. A URI reference is sometimes missing the scheme element, even if the authority and path elements are present as defined by the RFC3986. For brevity, we use the uri attribute to denote URIs and URI references.|
 |uuid|The purpose of a uuid is to denote an identifier, which uniquely identifies a single observation. For example, UUIDs generated with Python should be generated using the uuid.uuid4() function, based on [RFC4122](http://tools.ietf.org/html/rfc4122). Note that "uuid" serves a different function than the tracking id.|
 |vulnerability|Sometimes it is necessary to provide an identifier for a vulnerability reported by a source. This helps in correlating the vulnerabilities across sources. A vulnerability may be a CVE assigned by MITRE or a name such as Heartbleed.|
-|weakness|Sometimes it is necessary to provide an identifier for a weakness reported by a source. This helps in correlating the weaknesses across sources. A weakness may relate to protocols, algorithms or flaws in implementation, e.g. SSLv2, MD5, expired x509 certificate or RSA key length.|
+|weakness|Sometimes it is necessary to provide an identifier for a weakness reported by a source. This helps in correlating the weaknesses across sources. A weakness may relate to flaws in protocols, algorithms, implementations or deployments, e.g. SSLv2, MD5, expired x509 certificate or RSA key length.|
 
 ### Artifact Attributes
 
