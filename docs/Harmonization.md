@@ -2,7 +2,7 @@
 
 # Data Harmonization Ontology
 
-> release date: 2022-10-05
+> release date: 2022-10-31
 
 The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a specific domain of expertise in mind, namely:
 
@@ -139,7 +139,7 @@ A good way to represent timestamps is this [ISO 8601 combined date-time represen
 
 ## Identity
 
-The observation **type** defines the way the attributes of an observation need to be interpreted as a whole. For a malware infection, the attributes most likely refer to a compromised end-user machine, whereas for a command and control server they refer to a server resource which is used by the criminals to control a botner. For example, a **port** for a malware infection observation is the source port of the malware beacon to the c&c server.
+The observation **type** defines the way the attributes of an observation need to be interpreted as a whole. For a malware infection, the attributes most likely refer to a compromised end-user machine, whereas for a command and control server they refer to a server resource which is used by the criminals to control a botnet. For example, a **port** for a malware infection observation is the source port of the malware beacon to the c&c server.
 
 |attribute|description|
 --- | --- |
