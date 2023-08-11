@@ -1,8 +1,8 @@
-> This document is classified by the Traffic Light Protocol (TLP) as **TLP:WHITE**.
+> This document is classified by the Traffic Light Protocol (TLP 2.0) as **TLP:CLEAR**.
 
 # Data Harmonization Ontology
 
-> release date: 2022-10-31
+> release date: 2023-08-11
 
 The proposition of this document is to explicate a data harmonization ontology, which can be used to tailor heterogeneous threat data to the needs of victim notification. We pay special attention to categorize the information in a way that directly serves the needs of early warning. We present four categories, which consist of explicit functional types, each with a specific domain of expertise in mind, namely:
 
@@ -90,6 +90,7 @@ Public exposure denotes observations which are useful in trying to minimize the 
 |attribute|description|impact|
 --- | --- | --- |
 |ddos potential|These observations refer to misconfigured network services, which are vulnerable to DDoS reflection often over UDP.|Even if this vulnerability does not directly affect the confidentiality or integrity of the host in question, the resource or upstream bandwidth consumption can affect availability.|
+|end-of-life component|These observations relate to various service components, which for one reason or another are no longer supported.|Running end-of-life components can jeopardize the service they are supporting. For example running an EOL version of nginx may jeopardize the web service it is supporting. For these observations, it is necessary to name the component through the component attribute.|
 |exposed service|These observations relate to network services, which should not be directly exposed to the Internet.|The implementations of these types of services have not been designed with the needs of the Internet in mind and can often be trivially compromised. A good example of this type of service is RDP.|
 |open service|This type refers to network services, which are publicly exposed to the Internet. This may be intentional or the result of a misconfiguration.|Even if scanning for this service has not identified a specific vulnerability, unintentionally exposed network services increase the attack surface and may lead to compromise. A good example of this type of service is FTP.|
 |open port|These types of observations relate to hosts which expose specific ports to the Internet, but the observations do not specify the exact service in question.|Open ports, which do have a service responding to requests from anyone will increase the attack surface of a given organization.|
@@ -222,6 +223,7 @@ The idea behind the additional attributes is to present generic observation meta
 |abuse contact|An abuse contact email address for an IP network.|
 |additional information|Sometimes it may be necessary to relay an additional piece of information to the report recipient related to the specific context at hand. So in a sense it is a placeholder for useful context dependent information, which would be otherwise difficult to convey without changing the schema.|
 |comment|Free text commentary about the abuse event augmented by an analyst.|
+|component|Internet services often comprise of multiple components and sometimes it is necessary to define a (faulty) component in addition to the higher level service.|
 |description url|A description URL is a link to a further description of the observation in question.|
 |description|A concise free-form textual description of the observation, which should make it easier for the recipient to interpret it.|
 |http request|Some feeders report HTTP requests instead of URLs. The feeders may call them URLs but for the sake of interoperability with automation, such events should be placed under the "http request" key as there is no guarantee that the protocol scheme is HTTP.|
